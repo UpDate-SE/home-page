@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import HomePage from './HomePage';
+import HomePage from 'HomePage';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 
