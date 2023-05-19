@@ -15,11 +15,13 @@
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "reactstrap": "^9.1.10",
+    "sass": "^1.62.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "yarn run watch-sass & react-scripts start",
+    "watch-sass": "sass --watch ./src/scss/custom.scss ./src/scss/css/style.css",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
