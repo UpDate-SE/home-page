@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Collapse, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from "reactstrap";
 
-import { UpdateSELogo } from "assets";
+import { ACSELogo } from "assets";
 
 import 'scss/css/style.css';
+import 'styles/NavbarHome.css';
 
 const NavBarHome = () => {
     const [collapseOpen, setCollapseOpen] = useState<boolean>(false);
@@ -13,25 +14,22 @@ const NavBarHome = () => {
     const toggleCollapse = () => setCollapseOpen(!collapseOpen);
     const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
-    useEffect((()=> {
-        console.log(animation);
-    }),[animation])
-
     return (
         <Navbar light 
             fixed='top' 
             expand='md' 
             id='nav-bar'
-            className='bg-light prevent-select'
+            className='bg-light prevent-select ps-3'
             container="fluid"
         >
-            <NavbarBrand href='#'>
-                <img src={UpdateSELogo}
-                    id='update-logo'
-                    className='h-75 img-fluid'
+            <NavbarBrand href='#' className='opacity-75-hover'>
+                <img src={ACSELogo}
+                    id='advanced-logo'
+                    className='img-fluid'
                     alt='company logo'
                     draggable={false}
                 />
+                <span className='text-primary fw-bold'>Advanced Code</span>
             </NavbarBrand>
             <NavbarToggler onClick={toggleCollapse} className='ms-auto' />
             <Collapse navbar isOpen={collapseOpen} 
