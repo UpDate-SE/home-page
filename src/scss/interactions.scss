@@ -1,0 +1,24 @@
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+$utilities: map-merge(
+  $utilities, (
+  "cursor": (
+    property: cursor,
+    class: cursor,
+    responsive: true,
+    values: auto pointer grab,
+  ),
+  "opacity": (
+    property: opacity,
+    class: opacity,
+    responsive: true,
+    state: hover,
+    values: (
+        0: 0,
+        25: .25,
+        50: .50,
+        75: .75,
+        100: 1,
+    )
+  ))
+);
