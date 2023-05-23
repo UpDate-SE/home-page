@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Carousel, CarouselIndicators, CarouselItem, Col, Row } from "reactstrap";
+
+import { Context, ContextType } from "context";
 
 import 'scss/css/style.css';
 
@@ -17,6 +19,8 @@ interface CarouselHomeProps {
 }
 
 const CarouselHome = ({slidesContent, textPosition='right', ...args}: CarouselHomeProps):JSX.Element => {
+    const { darkMode } = useContext(Context) as ContextType; 
+
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const [animating, setAnimating] = useState<boolean>(false);
 
@@ -58,7 +62,7 @@ const CarouselHome = ({slidesContent, textPosition='right', ...args}: CarouselHo
                     <Col md='7'
                         className={`order-${textPosition === 'left' ? '1' : '3'}`}
                     >
-                        <p className='fs-4 lh-lg'>
+                        <p className={`${darkMode ? 'text-light' : 'text-dark'} fs-4 lh-lg`}>
                             <span className='fw-bold'>{content.title}</span>
                             <br/>
                             {content.description.map((paragraph, index) => {
@@ -70,7 +74,7 @@ const CarouselHome = ({slidesContent, textPosition='right', ...args}: CarouselHo
                                 content.contact ? 
                                 <span>
                                     Contacto:&nbsp;
-                                    <a className='text-primary email'
+                                    <a className={`${darkMode ? 'text-primary-dark' : 'text-primary'} opacity-75-hover`}
                                         href={`mailto:${content.contact}`}
                                     >
                                         {content.contact}
@@ -88,7 +92,7 @@ const CarouselHome = ({slidesContent, textPosition='right', ...args}: CarouselHo
 
     return (
         <Carousel
-            dark
+            dark = {!darkMode}
             activeIndex={activeIndex}
             next={nextSlide}
             previous={previousSlide}

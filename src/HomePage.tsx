@@ -1,38 +1,49 @@
+import { useContext } from 'react';
 import { Button, Col, Container, Row } from 'reactstrap';
 
 import { InmomatchLogo, Meeting, RentFirmeLogo, TeamProcess, TrenningLogo } from 'assets';
 
 import { CarouselHome, NavBarHome } from 'components';
+import { Context, ContextType } from 'context';
 
 import 'scss/css/style.css';
 import 'styles/HomePage.css';
 
 const HomePage = () => {
+    const { darkMode } = useContext(Context) as ContextType; 
+
     return (
-        <Container fluid className='p-0 g-0' id='home-page'>
-            <NavBarHome />
+        <Container fluid 
+            className={`p-0 g-0 ${darkMode ? 'bg-dark' : 'bg-light'}`}
+            id='home-page'
+        >
+            <NavBarHome/>
             <Container fluid id='page-content #' className='p-0'>
                 <Container fluid id='image-top'
                     className='d-flex flex-column align-items-center justify-content-center user-select-none'
                     style={{backgroundImage: `url(${TeamProcess})`}}
                 >
                     <span className='w-50 text-light fs-1 fw-bold text-center'>¿Tienes alguna aplicación que quieras hacer realidad y no sabes cómo crearla?</span>
-                    <Button color='primary fw-bold text-uppercase p-3 mt-5'>
+                    <Button color={darkMode ? 'primary-dark' : 'primary'} 
+                        className='fw-bold text-uppercase p-3 mt-5'>
                         Cotiza tu Proyecto
                     </Button>
                 </Container>
-                <Container fluid id='us-section' className='position-relative px-5 mt-2 pt-4'>
+                <Container fluid 
+                    id='us-section'
+                    className='position-relative px-5 mt-2 pt-4'
+                >
                     <Row>
-                        <span className='text-primary fs-2 fw-bold mb-2'>
+                        <span className={`${darkMode ? 'text-primary-dark' : 'text-primary'} fs-2 fw-bold mb-2`}>
                             Sobre nosotros
                         </span>
                     </Row>
                     <Row className='my-4'>
                         <Col md='6'>
-                            <span className='fs-4 lh-lg'>
+                            <span className={`${darkMode ? 'text-light' : 'text-dark'} fs-4 lh-lg`}>
                                 Somos una empresa desarrolladora de software (Aplicaciones móbiles, páginas web y algoritmos) con un equipo de profesionales altamente capacitados y actualizados para poder brindar resultados con el mejor rendimiento posible a un precio justo.
                                 Cada uno de nuestros miembros de esta organización es contratado sabiendo que brindará la exigente calidad que
-                                <span className='text-primary fw-bold'> “Advanced Code SE”</span> ofrece para cada uno de sus productos.
+                                <span className={`${darkMode ? 'text-primary-dark' : 'text-primary'} fw-bold`}> “Advanced Code SE”</span> ofrece para cada uno de sus productos.
                             </span>
                         </Col>
                         <Col md="6">
@@ -47,7 +58,7 @@ const HomePage = () => {
                 </Container>
                 <Container fluid id='collaborators-section' className='position-relative px-5 mt-2'>
                     <Row>
-                        <span className='text-primary fs-2 fw-bold my-2'>
+                        <span className={`${darkMode ? 'text-primary-dark' : 'text-primary'} fs-2 fw-bold my-2`}>
                             Empresas colaboradoras
                         </span>
                     </Row>
@@ -78,7 +89,7 @@ const HomePage = () => {
                 </Container>
                 <Container fluid id='projects-section' className='position-relative px-5 mt-2'>
                     <Row>
-                        <span className='text-primary fs-2 fw-bold my-2'>
+                        <span className={`${darkMode ? 'text-primary-dark' : 'text-primary'} fs-2 fw-bold my-2`}>
                             Proyectos
                         </span>
                     </Row>
@@ -106,22 +117,23 @@ const HomePage = () => {
                     <div className='anchor' id='projects'></div>
                 </Container>
                 <Container fluid id='contact-section' className='position-relative px-5 mt-2'>
-                    <span className='text-primary fs-2 fw-bold my-2'>
+                    <span className={`${darkMode ? 'text-primary-dark' : 'text-primary'} fs-2 fw-bold my-2`}>
                         Contacto
                     </span>
                     <br/>
-                    <p className='fs-4'>
-                        <span>
+                    <p className='fs-4 mb-0 pb-5'>
+                        <span className={darkMode ? 'text-light' : 'text-dark'}>
                             Si quieres hacer una cotizacion para realizar una plataforma/App movil manda mensaje a este correo:
                         </span>
                         <br/>
                         <a
-                            className='text-primary'
+                            className={darkMode ? 'text-primary-dark' : 'text-primary'}
                             href='mailto:josuearredondo@advancedcodese.com'
                         >
                             josuearredondo@advancedcodese.com
                         </a>
                     </p>
+                    <div className='anchor' id='contact'></div>
                 </Container>
             </Container>
         </Container>
