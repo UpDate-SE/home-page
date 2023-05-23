@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/UpDate-SE/home-page/static/css/main.19ca2276.css",
+    "main.js": "/UpDate-SE/home-page/static/js/main.f37f01f3.js",
+    "static/js/787.3aa68a5b.chunk.js": "/UpDate-SE/home-page/static/js/787.3aa68a5b.chunk.js",
+    "static/media/team-process.jpg": "/UpDate-SE/home-page/static/media/team-process.92a10d99987417e23140.jpg",
+    "static/media/meeting.jpg": "/UpDate-SE/home-page/static/media/meeting.b6ed0471e2a3aa789140.jpg",
+    "static/media/ACSELogo.png": "/UpDate-SE/home-page/static/media/ACSELogo.a8a5636942ab0e993a2d.png",
+    "static/media/inmomatch.jpg": "/UpDate-SE/home-page/static/media/inmomatch.488a9b3ceaf5e5c32dbb.jpg",
+    "static/media/rentefirme.jpg": "/UpDate-SE/home-page/static/media/rentefirme.0535788451351c92007d.jpg",
+    "static/media/trenning.jpg": "/UpDate-SE/home-page/static/media/trenning.0bd59499a0fb59f1f21a.jpg",
+    "index.html": "/UpDate-SE/home-page/index.html",
+    "main.19ca2276.css.map": "/UpDate-SE/home-page/static/css/main.19ca2276.css.map",
+    "main.f37f01f3.js.map": "/UpDate-SE/home-page/static/js/main.f37f01f3.js.map",
+    "787.3aa68a5b.chunk.js.map": "/UpDate-SE/home-page/static/js/787.3aa68a5b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.19ca2276.css",
+    "static/js/main.f37f01f3.js"
+  ]
+}
