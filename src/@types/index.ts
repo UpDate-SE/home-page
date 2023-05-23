@@ -1,9 +1,15 @@
-export enum Language {
-    ESP = 'ESP',
-    ENG = 'ENG'
+export interface UserLanguage {
+    language: string;
+    flag: string;
+}
+
+export interface LanguagesDict {
+    [country: string]: UserLanguage;
 }
 
 export interface UserContextType {
     darkMode: boolean;
-    lang: Language;
+    currentLang: UserLanguage;
+    langOption: UserLanguage;
+    toggleLanguage: () => void;
 }

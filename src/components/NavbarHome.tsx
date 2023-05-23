@@ -9,7 +9,7 @@ import 'scss/css/style.css';
 import 'styles/NavbarHome.css';
 
 const NavBarHome = () => {
-    const { darkMode } = useContext(UserContext) as UserContextType; 
+    const { darkMode, currentLang, langOption, toggleLanguage } = useContext(UserContext) as UserContextType; 
     const [collapseOpen, setCollapseOpen] = useState<boolean>(false);
     const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
     const [animation, setAnimation] = useState<boolean>(false);
@@ -34,7 +34,6 @@ const NavBarHome = () => {
                     alt='company logo'
                     draggable={false}
                 />
-                {/*<span className='text-primary fw-bold'>Advanced Code</span>*/}
             </NavbarBrand>
             <NavbarToggler onClick={toggleCollapse} className='ms-auto' />
             <Collapse navbar isOpen={collapseOpen} 
@@ -46,28 +45,28 @@ const NavBarHome = () => {
                     <NavItem>
                         <NavLink href='#us' 
                             className={darkMode ? 'link-primary-dark' : 'link-primary'}>
-                            Nosotros
+                            {currentLang.language === 'ESP' ? 'Nosotros' : 'About us'}
                         </NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink href='#collaborators'
                             className={darkMode ? 'link-primary-dark' : 'link-primary'}
                         >
-                            Colaboradores
+                            {currentLang.language === 'ESP' ? 'Colaboradores' : 'Collaborators'}
                         </NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink href='#projects'
                             className={darkMode ? 'link-primary-dark' : 'link-primary'}
                         >
-                            Proyectos
+                            {currentLang.language === 'ESP' ? 'Proyectos' : 'Projects'}
                         </NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink href='#contact'
                             className={darkMode ? 'link-primary-dark' : 'link-primary'}
                         >
-                            Contacto
+                            {currentLang.language === 'ESP' ? 'Contacto' : 'Contact'}
                         </NavLink>
                     </NavItem>
                 </Nav>
@@ -83,16 +82,20 @@ const NavBarHome = () => {
                 <DropdownToggle nav caret 
                     className={`${darkMode ? 'text-light' : 'text-dark'} d-flex align-items-center`}
                 >
-                    <span className="fs-3 fi fi-mx"></span>
+                    <span className={`fs-3 ${currentLang.flag}`}></span>
                     <span className='ms-2'>
-                        ESP
+                        {currentLang.language}
                     </span>
                 </DropdownToggle>
                 <DropdownMenu dark={darkMode}
                     className={`${darkMode ? 'bg-dark-dark' : 'bg-light'} no-min-width fit-content`}
                 >
-                    <DropdownItem className='no-min-width fit-content'>
-                        <span className="fs-3 fi fi-us"></span><span className='ms-2'>ENG</span>
+                    <DropdownItem 
+                        className='no-min-width fit-content'
+                        onClick={toggleLanguage}
+                    >
+                        <span className={`fs-3 ${langOption.flag}`}></span>
+                        <span className='ms-2'>{langOption.language}</span>
                     </DropdownItem>
                 </DropdownMenu>
             </Dropdown>
