@@ -1,3 +1,59 @@
-@import './colors.scss';
-@import './interactions.scss';
-@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../../node_modules/bootstrap/scss/functions";
+
+// Default variables
+$primary: #4472C5;
+
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+// New colors
+
+$primary-dark: #62C6FF;
+$dark-dark: black;
+
+$dark-theme-colors: (
+  "primary-dark": $primary-dark,
+  "dark-dark": $dark-dark
+);
+
+$theme-colors: map-merge(
+  $theme-colors,
+  $dark-theme-colors
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap-utilities.scss";
+@import "../../node_modules/bootstrap/scss/utilities";
+
+// Add utilities
+
+$utilities: map-merge(
+  $utilities, (
+  "cursor": (
+    property: cursor,
+    class: cursor,
+    responsive: true,
+    values: auto pointer grab,
+  ),
+  "opacity": (
+    property: opacity,
+    class: opacity,
+    responsive: true,
+    state: hover,
+    values: (
+      0: 0,
+      25: .25,
+      50: .50,
+      75: .75,
+      100: 1,
+    )
+  ),
+  "filter": (
+    property: filter,
+    class: filter,
+    values: (
+      'dark': invert(56%) sepia(95%) saturate(859%) hue-rotate(183deg) brightness(111%) contrast(106%)
+    )
+  )),
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
