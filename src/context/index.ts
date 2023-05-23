@@ -1,2 +1,1 @@
-export { Context, ContextProvider } from './Context';
-export type { ContextType } from './Context';
+export { UserContext, UserContextProvider } from './Context';

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ContextProvider } from 'context';
+import { UserContextProvider } from 'context';
 
 import HomePage from 'HomePage';
 import reportWebVitals from './reportWebVitals';
@@ -11,9 +11,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ContextProvider>
+    <UserContextProvider>
       <HomePage />
-    </ContextProvider>
+    </UserContextProvider>
   </React.StrictMode>
 );
 

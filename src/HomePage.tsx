@@ -4,13 +4,14 @@ import { Button, Col, Container, Row } from 'reactstrap';
 import { InmomatchLogo, Meeting, RentFirmeLogo, TeamProcess, TrenningLogo } from 'assets';
 
 import { CarouselHome, NavBarHome } from 'components';
-import { Context, ContextType } from 'context';
+import { UserContext } from 'context';
+import { UserContextType } from '@types';
 
 import 'scss/css/style.css';
 import 'styles/HomePage.css';
 
 const HomePage = () => {
-    const { darkMode } = useContext(Context) as ContextType; 
+    const { darkMode } = useContext(UserContext) as UserContextType; 
 
     return (
         <Container fluid 

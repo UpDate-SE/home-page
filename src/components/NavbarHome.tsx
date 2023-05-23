@@ -2,13 +2,14 @@ import { useContext, useState } from "react";
 import { Collapse, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from "reactstrap";
 
 import { ACSELogo } from "assets";
-import { Context, ContextType } from "context";
+import { UserContext } from "context";
+import { UserContextType } from "@types";
 
 import 'scss/css/style.css';
 import 'styles/NavbarHome.css';
 
 const NavBarHome = () => {
-    const { darkMode } = useContext(Context) as ContextType; 
+    const { darkMode } = useContext(UserContext) as UserContextType; 
     const [collapseOpen, setCollapseOpen] = useState<boolean>(false);
     const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
     const [animation, setAnimation] = useState<boolean>(false);

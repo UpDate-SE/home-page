@@ -1,25 +1,20 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
+import { Language, UserContextType } from "@types";
 
-export interface ContextType {
-    darkMode: boolean;
-}
+export const UserContext = React.createContext<UserContextType | null>(null);
 
-export const Context = React.createContext<ContextType | null>(null);
-
-type Props = {
-    children: React.ReactNode
-}
-
-export const ContextProvider = ({children}: Props): JSX.Element => {
+export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element => {
     const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const lang = Language.ESP;
 
     const provider = {
-        darkMode
+        darkMode,
+        lang
     }
 
     return (
-        <Context.Provider value={provider}>
+        <UserContext.Provider value={provider}>
             {children}
-        </Context.Provider>
+        </UserContext.Provider>
     )
 }

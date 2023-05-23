@@ -1,7 +1,8 @@
 import { useContext, useState } from "react";
 import { Carousel, CarouselIndicators, CarouselItem, Col, Row } from "reactstrap";
 
-import { Context, ContextType } from "context";
+import { UserContext } from "context";
+import { UserContextType } from "@types";
 
 import 'scss/css/style.css';
 
@@ -19,7 +20,7 @@ interface CarouselHomeProps {
 }
 
 const CarouselHome = ({slidesContent, textPosition='right', ...args}: CarouselHomeProps):JSX.Element => {
-    const { darkMode } = useContext(Context) as ContextType; 
+    const { darkMode } = useContext(UserContext) as UserContextType; 
 
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const [animating, setAnimating] = useState<boolean>(false);
