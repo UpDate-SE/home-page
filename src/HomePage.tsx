@@ -31,14 +31,16 @@ const HomePage = () => {
                             'Do you have a project you want to make and you don\'t know how?'
                         }
                     </span>
-                    <Button color={darkMode ? 'primary-dark' : 'primary'} 
-                        className='fw-bold text-uppercase p-3 mt-5'>
-                        {currentLang.language === 'ESP' ?
-                            'Cotiza tu Proyecto'
-                            :
-                            'Get a quote'
-                        }
-                    </Button>
+                    <a href='mailto:josuearredondo@advancedcodese.com'>
+                        <Button color={darkMode ? 'primary-dark' : 'primary'} 
+                            className='fw-bold text-uppercase p-3 mt-5'>
+                                {currentLang.language === 'ESP' ?
+                                    'Cotiza tu Proyecto'
+                                    :
+                                    'Get a quote'
+                                }
+                        </Button>
+                    </a>
                 </Container>
                 <Container fluid 
                     id='us-section'
