@@ -1,6 +1,6 @@
 {
   "name": "home-page",
-  "homepage": "https://update-se.github.io/home-page/",
+  "homepage": "https://update-se.github.io/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -26,7 +26,8 @@
   "scripts": {
     "start": "yarn run watch-sass & react-scripts start",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build",
+    "add-cname": "echo www.advancedcodese.com > build/CNAME",
+    "deploy": "yarn run add-cname ; gh-pages -d build",
     "watch-sass": "sass --watch ./src/scss/custom.scss ./src/scss/css/style.css",
     "build": "react-scripts build",
     "test": "react-scripts test",
