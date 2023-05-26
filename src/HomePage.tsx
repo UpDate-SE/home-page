@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Button, Col, Container, Row } from 'reactstrap';
 
-import { InmomatchLogo, Meeting, RentFirmeLogo, TeamProcess, TrenningLogo } from 'assets';
+import { CaorIncLogo, InmomatchLogo, Meeting, RentFirmeLogo, TeamProcess, TrenningLogo, ZoomerChatLogo } from 'assets';
 
 import { CarouselHome, NavBarHome } from 'components';
 import { UserContext } from 'context';
@@ -124,6 +124,19 @@ const HomePage = () => {
                                 contact: 'treningslp@gmail.com'
                             },
                             {
+                                title: 'Caor Inc',
+                                image: CaorIncLogo,
+                                description: currentLang.language === 'ESP' ?
+                                [
+                                    'Startup enfocada en el negocio de las redes sociales con un proyecto innovador para la epoca utilizando un complejo sistema de emparejamiento con inteligencia artificial.'
+                                ]
+                                :
+                                [
+                                    'Startup focused on the business of social networks with an innovative project at the time using a complex matchmaking system with artificial intelligence.'
+                                ],
+                                contact: 'contact@caorinc.com'
+                            },
+                            {
                                 title: 'Rentefirme',
                                 image: RentFirmeLogo,
                                 description: currentLang.language === 'ESP' ?
@@ -134,10 +147,10 @@ const HomePage = () => {
                                 :
                                 [
                                     'Warranty policies',
-                                    'Company with 8 years of experience guaranteeing a safe sale/rental of your property and vacating it if necessary trough leasing policies'
+                                    'Company with 8 years of experience guaranteeing a safe sale/rental of your property and vacating it if necessary trough leasing policies.'
                                 ],
                                 contact: 'rentefirme@gmail.com'
-                            }
+                            },
                         ]}
                     />
                     <div className='anchor' id='collaborators'></div>
@@ -160,13 +173,27 @@ const HomePage = () => {
                                 image: TrenningLogo,
                                 description: currentLang.language === 'ESP' ? 
                                 [
-                                    'Para esta empresa se desarrolló una aplicación de escritorio enfocada en la centralización de usuarios para la capacitación de trabajadores en areas específicas de la industria.',
-                                    'Esta aplicación está desarrollada para windows y proyectada para su posible funcionamiento en dispositivos móviles unificando su base de datos.'
+                                    'Para esta empresa se desarrolló una aplicación de escritorio enfocada en la centralización de usuarios para la capacitación de trabajadores en áreas específicas de la industria.',
+                                    'Esta aplicación está desarrollada para Windows y proyectada para su posible funcionamiento en dispositivos móviles unificando su base de datos.'
                                 ]
                                 :
                                 [
                                     'For this company we developed a desktop application focused on the centralization of users for the training of workers in specific areas of the industry.',
-                                    'This application is developed for Windows PCs and designed to be functional in mobile devices in the future, using the same database'
+                                    'This application is developed for Windows PCs and designed to be functional in mobile devices in the future, using the same database.'
+                                ]
+                            },
+                            {
+                                title: 'Zoomer.chat',
+                                image: ZoomerChatLogo,
+                                description: currentLang.language === 'ESP' ?
+                                [
+                                    'Para esta empresa se desarrolló una red social optimizada tanto como aplicacion mobil como plataforma web en la que se buscaba innovar la comunicación de video llamadas mediante un sistema de traducción automática en tiempo real.',
+                                    'El proyecto llegó a concluirse pero está a la espera de ver la luz a un público general.'
+                                ]
+                                :
+                                [
+                                    'For this company, we developed an optimized social network, we made it available as a mobile application and a web platform in which we sought to innovate video call communication using a live, automatic, in real time translation system.',
+                                    'The project came to an end but is waiting to see the light to a general public.'
                                 ]
                             },
                             {
