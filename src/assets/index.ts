@@ -1,8 +1,9 @@
-export { default as ACSELogo } from './ACSELogo.png';
-export { default as CaorIncLogo } from './caor.jpg';
-export { default as InmomatchLogo } from './inmomatch.jpg';
-export { default as Meeting } from './meeting.jpg';
-export { default as RentFirmeLogo } from './rentefirme.jpg';
-export { default as TeamProcess } from './team-process.jpg';
-export { default as TrenningLogo } from './trenning.jpg';
-export { default as ZoomerChatLogo } from './zoomer.jpg';
+export { default as ACSELogo } from './ACSELogo.webp';
+export { default as CaorIncLogo } from './caor.webp';
+export { default as InmomatchLogo } from './inmomatch.webp';
+export { default as Meeting } from './meeting.webp';
+export { default as RentFirmeLogo } from './rentefirme.webp';
+export { default as TeamProcess } from './team-process.webp';
+export { default as TeamProcessSM } from './team-process-sm.webp';
+export { default as TrenningLogo } from './trenning.webp';
+export { default as ZoomerChatLogo } from './zoomer.webp';
