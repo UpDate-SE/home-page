@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Carousel, CarouselIndicators, CarouselItem, Col, Row } from "reactstrap";
 
 import { UserContext } from "context";
-import { UserContextType } from "@types";
+import { UserContextType, WindowDimensions } from "@types";
 
 import 'scss/css/style.css';
 import 'styles/CarouselHome.css';
@@ -25,6 +25,20 @@ const CarouselHome = ({slidesContent, textPosition='right', ...args}: CarouselHo
 
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const [animating, setAnimating] = useState<boolean>(false);
+
+    const [windowSize, setWindowSize] = useState<WindowDimensions>({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+        
+    useEffect(() => {
+        window.onresize = () => {
+            setWindowSize({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            });
+        };
+    }, []);
 
     const nextSlide = () => {
         if(animating) return;
@@ -52,11 +66,13 @@ const CarouselHome = ({slidesContent, textPosition='right', ...args}: CarouselHo
             >
                 <Row>
                     <Col md='5'
-                        className={`order-2 ${textPosition === 'left' ? 'text-center': ''}
-                        h-sm-fit-content`}
+                        className={
+                            `order-2 ${textPosition === 'left' ? 'text-center': ''}
+                            ${windowSize.width < 768 ? 'text-center' : ''}
+                        `}
                     >
                         <img 
-                            className='p-0 h-75 img-fluid border border-primary border-3 user-select-none'
+                            className='p-0 w-75 img-fluid border border-primary border-3 user-select-none'
                             draggable={false}
                             src={content.image}
                             alt='logo'
@@ -102,12 +118,12 @@ const CarouselHome = ({slidesContent, textPosition='right', ...args}: CarouselHo
             activeIndex={activeIndex}
             next={nextSlide}
             previous={previousSlide}
-            className='margin-bottom-mobile'
+            className='mb-md-4 margin-bottom-mobile'
             {...args}
         >
             <CarouselIndicators
                 style={{
-                    bottom: '90px'
+                    bottom: '-50px'
                 }}
                 items={slidesContent}
                 activeIndex={activeIndex}

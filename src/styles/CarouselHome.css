@@ -1,7 +1,4 @@
 @media screen and (max-width: 768px) {
-    .h-sm-fit-content {
-        height: fit-content;
-    }
     .bottom-sm {
         bottom: -10px !important;
     }
