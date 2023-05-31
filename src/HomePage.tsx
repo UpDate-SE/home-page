@@ -9,6 +9,7 @@ import { UserContextType } from '@types';
 
 import 'scss/css/style.css';
 import 'styles/HomePage.css';
+import Footer from 'components/Footer';
 
 const HomePage = () => {
     const { darkMode, currentLang } = useContext(UserContext) as UserContextType; 
@@ -256,6 +257,7 @@ const HomePage = () => {
                     <div className='anchor' id='contact'></div>
                 </Container>
             </Container>
+            <Footer/>
         </Container>
     )
 }
