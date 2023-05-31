@@ -1,11 +1,11 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Button, Col, Container, Row } from 'reactstrap';
 
-import { CaorIncLogo, InmomatchLogo, Meeting, RentFirmeLogo, TeamProcess, TrenningLogo, ZoomerChatLogo } from 'assets';
+import { CaorIncLogo, InmomatchLogo, Meeting, RentFirmeLogo, TeamProcess, TeamProcessSM, TrenningLogo, ZoomerChatLogo } from 'assets';
 
 import { CarouselHome, NavBarHome } from 'components';
 import { UserContext } from 'context';
-import { UserContextType } from '@types';
+import { UserContextType, WindowDimensions } from '@types';
 
 import 'scss/css/style.css';
 import 'styles/HomePage.css';
@@ -13,6 +13,19 @@ import Footer from 'components/Footer';
 
 const HomePage = () => {
     const { darkMode, currentLang } = useContext(UserContext) as UserContextType; 
+    const [windowSize, setWindowSize] = useState<WindowDimensions>({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+        
+    useEffect(() => {
+        window.onresize = () => {
+            setWindowSize({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            });
+        };
+    }, []);
 
     return (
         <Container fluid 
@@ -23,7 +36,12 @@ const HomePage = () => {
             <Container fluid id='page-content #' className='p-0'>
                 <Container fluid id='image-top'
                     className='d-flex flex-column align-items-center justify-content-center user-select-none'
-                    style={{backgroundImage: `url(${TeamProcess})`}}
+                    style={
+                        windowSize.width > 768 ?
+                        {backgroundImage: `url(${TeamProcess})`}
+                        :
+                        {backgroundImage: `url(${TeamProcessSM})`}
+                    }
                 >
                     <span className='w-50 text-light fs-1 fw-bold text-center'>
                         {currentLang.language === 'ESP' ?

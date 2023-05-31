@@ -7,6 +7,11 @@ export interface LanguagesDict {
     [country: string]: UserLanguage;
 }
 
+export interface WindowDimensions {
+    width: number
+    height: number
+}
+
 export interface UserContextType {
     darkMode: boolean;
     currentLang: UserLanguage;
