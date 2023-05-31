@@ -15,7 +15,7 @@ const HomePage = () => {
 
     return (
         <Container fluid 
-            className={`p-0 g-0 ${darkMode ? 'bg-dark' : 'bg-light'}`}
+            className={`p-0 g-0 ${darkMode ? 'bg-dark' : 'bg-light'} overflow-hidden`}
             id='home-page'
         >
             <NavBarHome/>
@@ -44,10 +44,13 @@ const HomePage = () => {
                 </Container>
                 <Container fluid 
                     id='us-section'
-                    className='position-relative px-5 mt-2 pt-4'
+                    className='position-relative px-sm-5 mt-2 pt-4'
                 >
                     <Row>
-                        <span className={`${darkMode ? 'text-primary-dark' : 'text-primary'} fs-2 fw-bold mb-2`}>
+                        <span 
+                            className={`${darkMode ? 'text-primary-dark' : 'text-primary'} 
+                                fs-2 fw-bold mb-2 section-title`}
+                        >
                             {currentLang.language === 'ESP' ?
                                 'Sobre nosotros'
                                 :
@@ -55,9 +58,12 @@ const HomePage = () => {
                             }
                         </span>
                     </Row>
-                    <Row className='my-4'>
+                    <Row className='my-sm-4'>
                         <Col md='6'>
-                            <span className={`${darkMode ? 'text-light' : 'text-dark'} fs-4 lh-lg`}>
+                            <span 
+                                className={`${darkMode ? 'text-light' : 'text-dark'} fs-4 lh-lg`}
+                                id='about-us'
+                            >
                                 {currentLang.language === 'ESP' ?
                                     <span>
                                         Somos una empresa desarrolladora de software (aplicaciones móbiles, páginas web, algoritmos) con un equipo de profesionales altamente capacitados y actualizados para poder brindar resultados con el mejor rendimiento posible a un precio justo.
@@ -94,9 +100,16 @@ const HomePage = () => {
                     </Row>
                     <div className='anchor' id='us'></div>
                 </Container>
-                <Container fluid id='collaborators-section' className='position-relative px-5 mt-2'>
+                <Container fluid 
+                    id='collaborators-section'
+                    className='position-relative px-sm-5 mt-3'
+                >
                     <Row>
-                        <span className={`${darkMode ? 'text-primary-dark' : 'text-primary'} fs-2 fw-bold my-2`}>
+                        <span 
+                            className={`${darkMode ? 'text-primary-dark' : 'text-primary'}
+                                fs-2 fw-bold my-2 section-title`
+                            }
+                        >
                             {currentLang.language === 'ESP' ?
                                 'Empresas colaboradoras'
                                 :
@@ -155,7 +168,7 @@ const HomePage = () => {
                     />
                     <div className='anchor' id='collaborators'></div>
                 </Container>
-                <Container fluid id='projects-section' className='position-relative px-5 mt-2'>
+                <Container fluid id='projects-section' className='position-relative px-sm-5 mt-2'>
                     <Row>
                         <span className={`${darkMode ? 'text-primary-dark' : 'text-primary'} fs-2 fw-bold my-2`}>
                             {currentLang.language === 'ESP' ?
@@ -197,16 +210,16 @@ const HomePage = () => {
                                 ]
                             },
                             {
-                                title: 'Rentefirme',
+                                title: 'Inmomatch',
                                 image: InmomatchLogo,
                                 description: currentLang.language === 'ESP' ? 
                                 [
-                                    'Para esta empresa se desarrolló una plataforma web y aplicación móvil enfocada en la centralización de propiedades para una experiencia a otro nivel.',
+                                    'Se desarrolló una plataforma web y aplicación móvil enfocada en la centralización de propiedades para una experiencia a otro nivel.',
                                     'Esta aplicación está desarrollada como página web y soportada para su funcionamiento en dispositivos móviles con una base de datos unificada.'
                                 ]
                                 :
                                 [
-                                    'For this company we developed a web and mobile application focused on the centralization of real state properties, providing an experience on another level.',
+                                    'We developed a web and mobile application focused on the centralization of real state properties, providing an experience on another level.',
                                     'This application is developed as a web page and mobile application with a unified database.'
                                 ]
                             }
@@ -214,7 +227,7 @@ const HomePage = () => {
                     />
                     <div className='anchor' id='projects'></div>
                 </Container>
-                <Container fluid id='contact-section' className='position-relative px-5 mt-2'>
+                <Container fluid id='contact-section' className='position-relative px-sm-5 mt-sm-2'>
                     <span className={`${darkMode ? 'text-primary-dark' : 'text-primary'} fs-2 fw-bold my-2`}>
                         {currentLang.language === 'ESP' ?
                             'Contacto'
@@ -226,14 +239,15 @@ const HomePage = () => {
                     <p className='fs-4 mb-0 pb-5'>
                         <span className={darkMode ? 'text-light' : 'text-dark'}>
                             {currentLang.language === 'ESP' ?
-                                'Si quieres hacer una cotizacion para realizar una plataforma/App movil manda mensaje a este correo:'
+                                'Si quieres hacer una cotización para realizar una plataforma/app móvil manda mensaje a este correo:'
                                 :
                                 'If you wish to get a quote for any application, please contact us using this email:'
                             }
                         </span>
                         <br/>
                         <a
-                            className={darkMode ? 'text-primary-dark' : 'text-primary'}
+                            className={`${darkMode ? 'text-primary-dark' : 'text-primary'} text-break`}
+                            id='bottom-email'
                             href='mailto:josuearredondo@advancedcodese.com'
                         >
                             josuearredondo@advancedcodese.com

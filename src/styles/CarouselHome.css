@@ -1,0 +1,20 @@
+@media screen and (max-width: 768px) {
+    .h-sm-fit-content {
+        height: fit-content;
+    }
+    .bottom-sm {
+        bottom: -10px !important;
+    }
+    .bottom-sm-large {
+        bottom: -45px !important;
+    }
+    .text-content {
+        min-height: 50vh !important;
+    }
+    .text-content-large {
+        min-height: 60vh !important;
+    }
+    .margin-bottom-mobile {
+        margin-bottom: 30px;
+    }
+}

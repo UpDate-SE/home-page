@@ -5,6 +5,7 @@ import { UserContext } from "context";
 import { UserContextType } from "@types";
 
 import 'scss/css/style.css';
+import 'styles/CarouselHome.css';
 
 interface CarouselSlide {
     title: string;
@@ -51,7 +52,8 @@ const CarouselHome = ({slidesContent, textPosition='right', ...args}: CarouselHo
             >
                 <Row>
                     <Col md='5'
-                        className={`order-2 ${textPosition === 'left' ? 'text-center': ''}`}
+                        className={`order-2 ${textPosition === 'left' ? 'text-center': ''}
+                        h-sm-fit-content`}
                     >
                         <img 
                             className='p-0 h-75 img-fluid border border-primary border-3 user-select-none'
@@ -61,7 +63,10 @@ const CarouselHome = ({slidesContent, textPosition='right', ...args}: CarouselHo
                         />
                     </Col>
                     <Col md='7'
-                        className={`order-${textPosition === 'left' ? '1' : '3'}`}
+                        className={
+                        `order-${textPosition === 'left' ? '1' : '3'}
+                        ${textPosition === 'left' ? 'text-content-large' : 'text-content'}
+                        h-sm-fit-content`}
                     >
                         <p className={`${darkMode ? 'text-light' : 'text-dark'} fs-4 lh-lg`}>
                             <span className='fw-bold'>{content.title}</span>
@@ -97,6 +102,7 @@ const CarouselHome = ({slidesContent, textPosition='right', ...args}: CarouselHo
             activeIndex={activeIndex}
             next={nextSlide}
             previous={previousSlide}
+            className='margin-bottom-mobile'
             {...args}
         >
             <CarouselIndicators
@@ -106,6 +112,7 @@ const CarouselHome = ({slidesContent, textPosition='right', ...args}: CarouselHo
                 items={slidesContent}
                 activeIndex={activeIndex}
                 onClickHandler={goToIndex}
+                className={`${textPosition === 'left' ? 'bottom-sm-large' : 'bottom-sm'}`}
             />
             {slides}
         </Carousel>
