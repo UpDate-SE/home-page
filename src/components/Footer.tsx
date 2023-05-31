@@ -18,18 +18,18 @@ const Footer = ():JSX.Element => {
             }
         >
             <Row className='d-flex align-items-center'>
-                <Col xs='2'>
+                <Col md='2'>
                     <span>&copy; Advanced Code SE</span>
                 </Col>
-                <Col xs='2'>
+                <Col md='2'>
                     {currentLang.language === 'ESP' ?
                         <span>Hecho con &#128153; </span>
                         :
                         <span>Made with &#128153; </span>
                     }
                 </Col>
-                <Col xs='2' className='ms-auto'>
-                    <Container fluid className='fs-4 d-flex justify-content-evenly align-items-center'>
+                <Col md='2' className='ms-md-auto'>
+                    <Container fluid className='p-0 fs-4 d-flex justify-content-evenly align-items-center'>
                         <a
                             href='https://www.linkedin.com/company/advanced-code-se/'
                             className={`
