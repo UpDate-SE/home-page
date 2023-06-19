@@ -19,6 +19,10 @@ code {
   user-select: none;
 }
 
+.no-focus:focus {
+  box-shadow: none !important;
+}
+
 .fit-content {
   width: fit-content !important;
 }
