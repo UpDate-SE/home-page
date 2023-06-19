@@ -30,9 +30,9 @@
   },
   "scripts": {
     "start": "yarn run watch-sass & react-scripts start",
-    "predeploy": "yarn build",
+    "predeploy": "yarn build; yarn run add-cname",
     "add-cname": "echo www.advancedcodese.com > build/CNAME",
-    "deploy": "yarn run add-cname ; gh-pages -d build",
+    "deploy": "gh-pages -d build",
     "watch-sass": "sass --watch ./src/scss/custom.scss ./src/scss/css/style.css",
     "build": "react-scripts build",
     "test": "react-scripts test",
