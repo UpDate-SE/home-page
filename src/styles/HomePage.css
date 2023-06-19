@@ -1,6 +1,6 @@
 #home-page #image-top {
-    height: 85vh;
-    margin-top: 15vh !important;
+    height: 90vh;
+    margin-top: 10vh !important;
     background-color: rgba(0, 0, 0, 0.50);
     background-blend-mode: darken;
     background-size: cover;
@@ -8,7 +8,7 @@
 
 #home-page .anchor {
     position: absolute;
-    top: -15vh;
+    top: -10vh;
     left:0px
 }
 

@@ -4,6 +4,7 @@ import { Collapse, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, Na
 import { ACSELogo } from "assets";
 import { UserContext } from "context";
 import { UserContextType } from "@types";
+import { DarkModeToggler } from 'components';
 
 import 'scss/css/style.css';
 import 'styles/NavbarHome.css';
@@ -27,7 +28,10 @@ const NavBarHome = () => {
             className={`${darkMode ? 'bg-dark-dark' : 'bg-light'} user-select-none ps-3`}
             container="fluid"
         >
-            <NavbarBrand href='#' className='opacity-75-hover'>
+            <NavbarBrand
+                href='#'
+                className='opacity-75-hover'
+            >
                 <img src={ACSELogo}
                     id='advanced-logo'
                     className={`${darkMode ? 'filter-dark': ''} img-fluid`}
@@ -35,6 +39,7 @@ const NavBarHome = () => {
                     draggable={false}
                 />
             </NavbarBrand>
+            <DarkModeToggler />
             <NavbarToggler onClick={toggleCollapse} className='ms-auto' />
             <Collapse navbar isOpen={collapseOpen} 
                 className={darkMode ? 'bg-dark-dark' : 'bg-light'} id='nav-bar-collapse'

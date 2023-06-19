@@ -1,7 +1,8 @@
 #nav-bar {
-    height: 15vh !important;
+    height: 10vh !important;
 }
 
 #nav-bar #advanced-logo {
-    height: 10vh !important;
+    min-height: 80px;
+    height: 8vh !important;
 }
