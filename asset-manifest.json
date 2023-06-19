@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.73c8a8ad.css",
-    "main.js": "/static/js/main.9e873b6d.js",
+    "main.css": "/static/css/main.4fc938a5.css",
+    "main.js": "/static/js/main.2aaf87d6.js",
     "static/js/787.3aa68a5b.chunk.js": "/static/js/787.3aa68a5b.chunk.js",
     "static/media/meeting.webp": "/static/media/meeting.6e1c1d7f9379939d403a.webp",
     "static/media/team-process.webp": "/static/media/team-process.55a9dc8c8a110c7578a3.webp",
@@ -13,12 +13,12 @@
     "static/media/ACSELogo.webp": "/static/media/ACSELogo.448f11b0164ef067c84a.webp",
     "static/media/caor.webp": "/static/media/caor.71ce1d8abff042bb4da0.webp",
     "index.html": "/index.html",
-    "main.73c8a8ad.css.map": "/static/css/main.73c8a8ad.css.map",
-    "main.9e873b6d.js.map": "/static/js/main.9e873b6d.js.map",
+    "main.4fc938a5.css.map": "/static/css/main.4fc938a5.css.map",
+    "main.2aaf87d6.js.map": "/static/js/main.2aaf87d6.js.map",
     "787.3aa68a5b.chunk.js.map": "/static/js/787.3aa68a5b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.73c8a8ad.css",
-    "static/js/main.9e873b6d.js"
+    "static/css/main.4fc938a5.css",
+    "static/js/main.2aaf87d6.js"
   ]
 }
