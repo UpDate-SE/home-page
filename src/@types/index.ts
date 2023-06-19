@@ -16,5 +16,6 @@ export interface UserContextType {
     darkMode: boolean;
     currentLang: UserLanguage;
     langOption: UserLanguage;
+    toggleDarkMode: () => void;
     toggleLanguage: () => void;
 }
