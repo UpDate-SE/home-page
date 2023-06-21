@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { Col, Container, Row } from "reactstrap";
 
-import { faGithub, faInstagram, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faGithub, faInstagram, faLinkedin, faTiktok, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 import { UserContextType } from "@types";
 import { UserContext } from "context";
@@ -47,6 +47,33 @@ const Footer = ():JSX.Element => {
                             `}
                         >
                             <FontAwesomeIcon icon={faInstagram} />
+                        </a>
+                        <a
+                            href='https://www.facebook.com/advancedcodese/'
+                            className={`
+                                opacity-50-hover
+                                ${darkMode ? 'text-light' : 'text-dark'}
+                            `}
+                        >
+                            <FontAwesomeIcon icon={faFacebook} />
+                        </a>
+                        <a
+                            href='https://www.youtube.com/@AdvancedCodeSE/'
+                            className={`
+                                opacity-50-hover
+                                ${darkMode ? 'text-light' : 'text-dark'}
+                            `}
+                        >
+                            <FontAwesomeIcon icon={faYoutube} />
+                        </a>
+                        <a
+                            href='https://www.tiktok.com/@advancedcodese'
+                            className={`
+                                opacity-50-hover
+                                ${darkMode ? 'text-light' : 'text-dark'}
+                            `}
+                        >
+                            <FontAwesomeIcon icon={faTiktok} />
                         </a>
                         <a href='https://github.com/UpDate-SE'
                             className={`
