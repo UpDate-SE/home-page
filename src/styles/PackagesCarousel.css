@@ -1,0 +1,13 @@
+#packages-carousel .carousel-indicators {
+    bottom: -3rem;
+}
+
+#packages-carousel .carousel-indicators button {
+    background-color: var(--bs-primary-dark);
+    height: 5px;
+    width: 3.2rem;
+}
+
+.carousel-dark .carousel-indicators button {
+    background-color: var(--bs-primary) !important;
+}
