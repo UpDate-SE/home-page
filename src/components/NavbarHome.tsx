@@ -25,7 +25,10 @@ const NavBarHome = () => {
             fixed='top' 
             expand='md' 
             id='nav-bar'
-            className={`${darkMode ? 'bg-dark-dark' : 'bg-light'} user-select-none ps-3`}
+            className={`${darkMode ? 'bg-dark-dark' : 'bg-light'} 
+                ps-3 user-select-none border-bottom
+                ${darkMode ? 'border-primary-dark' : 'border-primary'}    
+            `}
             container="fluid"
         >
             <NavbarBrand
@@ -39,14 +42,19 @@ const NavBarHome = () => {
                     draggable={false}
                 />
             </NavbarBrand>
-            <DarkModeToggler />
             <NavbarToggler onClick={toggleCollapse} className='ms-auto' />
             <Collapse navbar isOpen={collapseOpen} 
                 className={darkMode ? 'bg-dark-dark' : 'bg-light'} id='nav-bar-collapse'
                 onEntering={() => setAnimation(true)} onExiting={() => setAnimation(true)}
                 onEntered={() => setAnimation(false)} onExited={() => setAnimation(false)}
             >
-                <Nav navbar className={`${darkMode ? 'bg-dark-dark' : 'bg-light'} ms-auto`}>
+                <Nav navbar className={`${darkMode ? 'bg-dark-dark' : 'bg-light'} mx-auto`}>
+                    <NavItem>
+                        <NavLink href='#plans' 
+                            className={darkMode ? 'link-primary-dark' : 'link-primary'}>
+                            {currentLang.language === 'ESP' ? 'Planes' : 'Plans'}
+                        </NavLink>
+                    </NavItem>
                     <NavItem>
                         <NavLink href='#us' 
                             className={darkMode ? 'link-primary-dark' : 'link-primary'}>
@@ -76,6 +84,7 @@ const NavBarHome = () => {
                     </NavItem>
                 </Nav>
             </Collapse>
+            <DarkModeToggler />
             <Dropdown inNavbar
                 style={{
                     visibility: collapseOpen || animation ? 'hidden' : 'visible',
