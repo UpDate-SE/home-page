@@ -9,17 +9,14 @@ export const UserContext = React.createContext<UserContextType | null>(null);
 
 export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element => {
     const [darkMode, setDarkMode] = useState<boolean>(() => getDarkModePreference());
-    const [currentLang, setCurrentLang] = useState<UserLanguage>(Languages['ESP']);
-    const [langOption, setLangOption] = useState<UserLanguage>(Languages['ENG']);
+    const [currentLang, setCurrentLang] = useState<UserLanguage>(() => getLanguagePreference());
+    const [langOption, setLangOption] = useState<UserLanguage>(() => getOppositeLang(currentLang));
 
     const toggleLanguage = () => {
-        if(currentLang.language === 'ESP') {
-            setCurrentLang(Languages['ENG']);
-            setLangOption(Languages['ESP']);
-        }else {
-            setCurrentLang(Languages['ESP']);
-            setLangOption(Languages['ENG']);
-        }
+        const newLang = getOppositeLang(currentLang); 
+        cookies.set('language', newLang.language, {path: '/', sameSite: 'strict'});
+        setCurrentLang(newLang);
+        setLangOption(currentLang);
     };
 
     const toggleDarkMode = () => {
@@ -63,3 +60,15 @@ const getDarkModePreference = (): boolean => {
     }
     return darkMode;
 }
+
+const getLanguagePreference = (): UserLanguage => {
+    let languagePref = cookies.get('language') as string | undefined;
+    if(!languagePref) {
+        return Languages['ESP'];
+    }
+    return Languages[languagePref];
+}
+
+const getOppositeLang = (lang: UserLanguage): UserLanguage => (
+    lang.language === 'ESP' ?  Languages['ENG'] : Languages['ESP']
+)
