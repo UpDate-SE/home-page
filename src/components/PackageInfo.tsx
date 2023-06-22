@@ -52,7 +52,8 @@ const PackageInfo = ({title, perks, image, price}: PackageInfoProps): JSX.Elemen
                         draggable={false}
                         className='user-select-none img-fluid'
                         style={{
-                            aspectRatio:'16/9'
+                            objectFit: 'contain',
+                            aspectRatio:'10/9'
                         }}
                     />
                     <span 
