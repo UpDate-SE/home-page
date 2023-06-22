@@ -1,0 +1,16 @@
+@media screen and (max-width: 768px) {
+    #dark-mode-toggler {
+        font-size: 1.5rem !important;
+        padding-right: 5px;
+    }
+    
+    #dark-mode-toggler svg {
+        height: 1.5rem;
+    }
+
+    #dark-mode-toggler .form-switch {
+        position: relative;
+        align-items: center !important;
+        top: -1px;
+    }
+}

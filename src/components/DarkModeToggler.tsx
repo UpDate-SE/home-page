@@ -8,13 +8,15 @@ import { UserContextType } from "@types";
 import { UserContext } from "context";
 
 import 'scss/css/style.css';
+import 'styles/DarkModeToggler.css';
 
 const DarkModeToggler = (): JSX.Element => {
     const { darkMode, toggleDarkMode } = useContext(UserContext) as UserContextType;
     
     return (
         <div
-            className='d-flex align-items-center'
+            id='dark-mode-toggler'
+            className='d-flex align-items-center justify-content-center'
         >
             <FontAwesomeIcon
                 icon={faSun}
