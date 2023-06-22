@@ -6,3 +6,24 @@
     min-height: 80px;
     height: 8vh !important;
 }
+
+@media screen and (max-width: 768px) {
+    #nav-bar {
+        padding: 0;
+        height: unset !important;
+    }
+
+    #nav-bar #collapsed-items {
+        justify-content: space-between;
+        align-items: flex-start !important;
+    }
+
+    #nav-bar #nav-bar-collapse ul {
+        margin: 0 !important;
+    }
+
+    #nav-bar #options {
+        flex-direction: column;
+        row-gap: 1.5rem;
+    }
+}
