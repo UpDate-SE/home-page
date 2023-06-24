@@ -24,16 +24,19 @@ const PackageInfo = ({title, perks, image, price}: PackageInfoProps): JSX.Elemen
             }}
         >    
             <Row>
-                <Col md={8}>
+                <Col md={8}
+                    className='text-center'
+                >
                     <span
+                        id='title'
                         className={`${darkMode ? 'text-light' : 'text-dark'} 
-                            fs-2 fw-bold mb-2 section-title`}
+                            fs-2 fw-bold mb-2`}
                     >
                         {title}
                     </span>
                     <List
                         className={`${darkMode ? 'text-light' : 'text-dark'}
-                            fs-5`}
+                            fs-5 text-start`}
                     >
                         {perks.map((perk, index) => (
                             <li key={index}>
