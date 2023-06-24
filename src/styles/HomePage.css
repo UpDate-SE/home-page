@@ -6,6 +6,10 @@
     background-size: cover;
 }
 
+#home-page .tiny {
+    font-size: 0.75rem;
+}
+
 #home-page .anchor {
     position: absolute;
     top: -10vh;

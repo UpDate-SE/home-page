@@ -271,13 +271,26 @@ const HomePage = () => {
                 >
                     <span 
                         className={`${darkMode ? 'text-primary-dark' : 'text-primary'}
-                            fs-2 fw-bold my-2 section-title`
+                            fs-2 fw-bold section-title`
                         }
                     >
                         {currentLang.language === 'ESP' ?
                             'Marketing en redes sociales'
                             :
                             'Social networks marketing'
+                        }
+                    </span>
+                    <br/>
+                    <span
+                        className={`${darkMode ? 'text-light' : 'text-dark'}
+                            tiny
+                        `}
+                    >
+                        *
+                        {currentLang.language === 'ESP' ?
+                            'En el primer mes se hace un estudio de la marca con un costo de $500 MXN'
+                            :
+                            'During the first month, a brand study is made with an extra cost of $500 MXN'
                         }
                     </span>
                     <MarketingPlans
