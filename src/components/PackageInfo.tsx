@@ -5,6 +5,7 @@ import { UserContextType } from "@types"
 import { UserContext } from "context"
 
 import 'scss/css/style.css';
+import 'styles/PackageInfo.css';
 
 type PackageInfoProps = {
     title: string;
@@ -18,15 +19,14 @@ const PackageInfo = ({title, perks, image, price}: PackageInfoProps): JSX.Elemen
     
     return (
         <Container fluid
+            id='package-info'
             className='mx-auto mt-3 border border-1 border-primary rounded'
             style={{
                 width: '90%'
             }}
         >    
             <Row>
-                <Col md={8}
-                    className='text-center'
-                >
+                <Col md={8} id='col-title'>
                     <span
                         id='title'
                         className={`${darkMode ? 'text-light' : 'text-dark'} 

@@ -5,5 +5,10 @@
 
     #package-info #title {
         font-size: 1.5rem !important;
+        margin: 0 auto !important;
+    }
+
+    #col-title {
+        text-align: center !important;
     }
 }
