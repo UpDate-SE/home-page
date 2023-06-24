@@ -56,7 +56,9 @@ const PackageInfo = ({title, perks, image, price}: PackageInfoProps): JSX.Elemen
                         className='user-select-none img-fluid'
                         style={{
                             objectFit: 'contain',
-                            aspectRatio:'10/9'
+                            aspectRatio:'10/9',
+                            height: '15rem',
+                            maxHeight: '50vh'
                         }}
                     />
                     <span 
