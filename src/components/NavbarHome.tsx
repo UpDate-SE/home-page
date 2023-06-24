@@ -1,22 +1,19 @@
 import { useContext, useState } from "react";
-import { Collapse, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from "reactstrap";
+import { Collapse, Container, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from "reactstrap";
 
 import { ACSELogo } from "assets";
 import { UserContext } from "context";
 import { UserContextType } from "@types";
-import { DarkModeToggler } from 'components';
+import { DarkModeToggler, LangSwitcher } from 'components';
 
 import 'scss/css/style.css';
 import 'styles/NavbarHome.css';
 
 const NavBarHome = () => {
-    const { darkMode, currentLang, langOption, toggleLanguage } = useContext(UserContext) as UserContextType; 
+    const { darkMode, currentLang } = useContext(UserContext) as UserContextType; 
     const [collapseOpen, setCollapseOpen] = useState<boolean>(false);
-    const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
-    const [animation, setAnimation] = useState<boolean>(false);
 
     const toggleCollapse = () => setCollapseOpen(!collapseOpen);
-    const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
     return (
         <Navbar 
@@ -43,76 +40,69 @@ const NavBarHome = () => {
                 />
             </NavbarBrand>
             <NavbarToggler onClick={toggleCollapse} className='ms-auto' />
-            <Collapse navbar isOpen={collapseOpen} 
-                className={darkMode ? 'bg-dark-dark' : 'bg-light'} id='nav-bar-collapse'
-                onEntering={() => setAnimation(true)} onExiting={() => setAnimation(true)}
-                onEntered={() => setAnimation(false)} onExited={() => setAnimation(false)}
+            <Collapse navbar
+                id='nav-bar-collapse'
+                isOpen={collapseOpen} 
+                className={darkMode ? 'bg-dark-dark' : 'bg-light'}
             >
-                <Nav navbar className={`${darkMode ? 'bg-dark-dark' : 'bg-light'} mx-auto`}>
-                    <NavItem>
-                        <NavLink href='#plans' 
-                            className={darkMode ? 'link-primary-dark' : 'link-primary'}>
-                            {currentLang.language === 'ESP' ? 'Planes' : 'Plans'}
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink href='#us' 
-                            className={darkMode ? 'link-primary-dark' : 'link-primary'}>
-                            {currentLang.language === 'ESP' ? 'Nosotros' : 'About us'}
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink href='#collaborators'
-                            className={darkMode ? 'link-primary-dark' : 'link-primary'}
-                        >
-                            {currentLang.language === 'ESP' ? 'Colaboradores' : 'Collaborators'}
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink href='#projects'
-                            className={darkMode ? 'link-primary-dark' : 'link-primary'}
-                        >
-                            {currentLang.language === 'ESP' ? 'Proyectos' : 'Projects'}
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink href='#contact'
-                            className={darkMode ? 'link-primary-dark' : 'link-primary'}
-                        >
-                            {currentLang.language === 'ESP' ? 'Contacto' : 'Contact'}
-                        </NavLink>
-                    </NavItem>
-                </Nav>
-            </Collapse>
-            <DarkModeToggler />
-            <Dropdown inNavbar
-                style={{
-                    visibility: collapseOpen || animation ? 'hidden' : 'visible',
-                    height: collapseOpen ? '0px' : 'inherit',
-                }}
-                isOpen={dropdownOpen} toggle={toggleDropdown}
-                className='mx-2 me-3'
-            >
-                <DropdownToggle nav caret 
-                    className={`${darkMode ? 'text-light' : 'text-dark'} d-flex align-items-center`}
+                <Container fluid
+                    id='collapsed-items'
+                    className='p-0 d-flex 
+                        align-items-center
+                    '
                 >
-                    <span className={`fs-3 ${currentLang.flag}`}></span>
-                    <span className='ms-2'>
-                        {currentLang.language}
-                    </span>
-                </DropdownToggle>
-                <DropdownMenu dark={darkMode}
-                    className={`${darkMode ? 'bg-dark-dark' : 'bg-light'} no-min-width fit-content`}
-                >
-                    <DropdownItem 
-                        className='no-min-width fit-content'
-                        onClick={toggleLanguage}
+                    <Nav navbar className={`${darkMode ? 'bg-dark-dark' : 'bg-light'} mx-auto`}>
+                        <NavItem>
+                            <NavLink href='#plans' 
+                                className={darkMode ? 'link-primary-dark' : 'link-primary'}
+                                onClick={()=>setCollapseOpen(false)}
+                            >
+                                {currentLang.language === 'ESP' ? 'Planes' : 'Plans'}
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href='#us' 
+                                className={darkMode ? 'link-primary-dark' : 'link-primary'}
+                                onClick={()=>setCollapseOpen(false)}
+                            >
+                                {currentLang.language === 'ESP' ? 'Nosotros' : 'About us'}
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href='#collaborators'
+                                className={darkMode ? 'link-primary-dark' : 'link-primary'}
+                                onClick={()=>setCollapseOpen(false)}
+                            >
+                                {currentLang.language === 'ESP' ? 'Colaboradores' : 'Collaborators'}
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href='#projects'
+                                className={darkMode ? 'link-primary-dark' : 'link-primary'}
+                                onClick={()=>setCollapseOpen(false)}
+                            >
+                                {currentLang.language === 'ESP' ? 'Proyectos' : 'Projects'}
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href='#contact'
+                                className={darkMode ? 'link-primary-dark' : 'link-primary'}
+                                onClick={()=>setCollapseOpen(false)}
+                            >
+                                {currentLang.language === 'ESP' ? 'Contacto' : 'Contact'}
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+                    <div id='options'
+                        className='d-flex'
                     >
-                        <span className={`fs-3 ${langOption.flag}`}></span>
-                        <span className='ms-2'>{langOption.language}</span>
-                    </DropdownItem>
-                </DropdownMenu>
-            </Dropdown>
+                        <DarkModeToggler />
+                        <LangSwitcher
+                            inNavbar
+                        />
+                    </div>
+                </Container>
+            </Collapse>
         </Navbar>
     )        
 }

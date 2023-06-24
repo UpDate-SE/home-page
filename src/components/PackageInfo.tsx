@@ -5,6 +5,7 @@ import { UserContextType } from "@types"
 import { UserContext } from "context"
 
 import 'scss/css/style.css';
+import 'styles/PackageInfo.css';
 
 type PackageInfoProps = {
     title: string;
@@ -18,22 +19,24 @@ const PackageInfo = ({title, perks, image, price}: PackageInfoProps): JSX.Elemen
     
     return (
         <Container fluid
+            id='package-info'
             className='mx-auto mt-3 border border-1 border-primary rounded'
             style={{
                 width: '90%'
             }}
         >    
             <Row>
-                <Col md={8}>
+                <Col md={8} id='col-title'>
                     <span
+                        id='title'
                         className={`${darkMode ? 'text-light' : 'text-dark'} 
-                            fs-2 fw-bold mb-2 section-title`}
+                            fs-2 fw-bold mb-2`}
                     >
                         {title}
                     </span>
                     <List
                         className={`${darkMode ? 'text-light' : 'text-dark'}
-                            fs-5`}
+                            fs-5 text-start`}
                     >
                         {perks.map((perk, index) => (
                             <li key={index}>
@@ -52,7 +55,8 @@ const PackageInfo = ({title, perks, image, price}: PackageInfoProps): JSX.Elemen
                         draggable={false}
                         className='user-select-none img-fluid'
                         style={{
-                            aspectRatio:'16/9'
+                            objectFit: 'contain',
+                            aspectRatio:'10/9'
                         }}
                     />
                     <span 

@@ -4,7 +4,7 @@ import { Button, Col, Container, Row } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
-import { CaorIncLogo, InmomatchLogo, KeepCommunity, MakeKnown, Marketing1, Marketing2, Marketing3, MarketingExpert, Meeting, Networks1, Networks2, Networks3, RentFirmeLogo, StarterGraph, TeamProcess, TeamProcessSM, TrenningLogo, ZoomerChatLogo } from 'assets';
+import { CaorIncLogo, KeepCommunity, MakeKnown, Marketing1, Marketing2, Marketing3, MarketingExpert, Meeting, Networks1, Networks2, Networks3, StarterGraph, TeamProcess, TeamProcessSM, TrenningLogo, ZoomerChatLogo } from 'assets';
 import { CarouselHome, FooterHome, MarketingPlans, NavBarHome, PackageInfo, PackagesCarousel } from 'components';
 import { UserContext } from 'context';
 import { UserContextType, WindowDimensions } from '@types';
@@ -433,22 +433,7 @@ const HomePage = () => {
                                     'Startup focused on the business of social networks with an innovative project at the time using a complex matchmaking system with artificial intelligence.'
                                 ],
                                 contact: 'contact@caorinc.com'
-                            },
-                            {
-                                title: 'Rentefirme',
-                                image: RentFirmeLogo,
-                                description: currentLang.language === 'ESP' ?
-                                [
-                                    'Pólizas de garantia.',
-                                    'Empresa que cuenta con 8 años de experiencia garantizando una renta/venta segura de tu inmueble y desocupación del mismo en caso de ser necesario mediante pólizas de arrendamiento.',
-                                ]
-                                :
-                                [
-                                    'Warranty policies',
-                                    'Company with 8 years of experience guaranteeing a safe sale/rental of your property and vacating it if necessary trough leasing policies.'
-                                ],
-                                contact: 'rentefirme@gmail.com'
-                            },
+                            }
                         ]}
                     />
                     <div className='anchor' id='collaborators'></div>
@@ -492,20 +477,6 @@ const HomePage = () => {
                                 [
                                     'For this company, we developed an optimized social network, we made it available as a mobile application and a web platform in which we sought to innovate video call communication using a live, automatic, in real time translation system.',
                                     'The project came to an end but is waiting to see the light to a general public.'
-                                ]
-                            },
-                            {
-                                title: 'Inmomatch',
-                                image: InmomatchLogo,
-                                description: currentLang.language === 'ESP' ? 
-                                [
-                                    'Se desarrolló una plataforma web y aplicación móvil enfocada en la centralización de propiedades para una experiencia a otro nivel.',
-                                    'Esta aplicación está desarrollada como página web y soportada para su funcionamiento en dispositivos móviles con una base de datos unificada.'
-                                ]
-                                :
-                                [
-                                    'We developed a web and mobile application focused on the centralization of real state properties, providing an experience on another level.',
-                                    'This application is developed as a web page and mobile application with a unified database.'
                                 ]
                             }
                         ]}
