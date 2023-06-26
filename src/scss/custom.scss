@@ -56,4 +56,13 @@ $utilities: map-merge(
   )),
 );
 
+$utilities: map-merge(
+  $utilities, (
+    "border": map-merge(
+      map-get($utilities, "border"),
+      ( state: hover ),
+    ),
+  )
+);
+
 @import "../../node_modules/bootstrap/scss/bootstrap";

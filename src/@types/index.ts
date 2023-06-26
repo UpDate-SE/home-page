@@ -19,3 +19,9 @@ export interface UserContextType {
     toggleDarkMode: () => void;
     toggleLanguage: () => void;
 }
+
+export type MarketingPlanType = {
+    image: string;
+    perks: Array<string>;
+    price: string;
+}
