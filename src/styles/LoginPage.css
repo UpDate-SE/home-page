@@ -1,0 +1,14 @@
+#login-page {
+    height: 100vh;
+    padding-top: 10vh;
+}
+
+#login-page #form-container {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+}
+
+#login-page #form {
+    width: 60%;
+}
