@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { UserContextProvider } from 'context';
 
-import HomePage from 'HomePage';
+import { AppRouter } from 'router/AppRouter';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 
@@ -11,9 +11,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <UserContextProvider>
-      <HomePage />
-    </UserContextProvider>
+    <AppRouter />
   </React.StrictMode>
 );
 
