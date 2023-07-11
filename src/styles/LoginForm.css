@@ -1,0 +1,9 @@
+#form-container {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+}
+
+#form-container #form {
+    width: 60%;
+}
