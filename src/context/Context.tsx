@@ -1,7 +1,8 @@
 import React, { PropsWithChildren, useState } from "react";
 import Cookies from "universal-cookie";
 
-import { LanguagesDict, UserContextType, UserLanguage } from "@types";
+import { LanguagesDict, LoginCredentials, UserContextType, UserLanguage } from "@types";
+import axios, { AxiosRequestConfig } from "axios";
 
 const cookies = new Cookies();
 
@@ -24,12 +25,31 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
         setDarkMode(!darkMode);
     }
 
+    const login = async (credentials: LoginCredentials): Promise<boolean> => {
+        const apiUrl = process.env.REACT_APP_API_URL;
+
+        const config: AxiosRequestConfig = {
+            url: `${apiUrl}/login`,
+            method: 'POST',
+            data: credentials
+        }
+
+        const reqToken = await axios(config)
+            .then(res => res.data)
+            .catch(err => console.error(err.data));
+        
+        if(reqToken) sessionStorage.setItem('token', reqToken);
+
+        return reqToken !== undefined;
+    }
+
     const provider = {
         darkMode,
         currentLang,
         langOption,
         toggleDarkMode,
-        toggleLanguage
+        toggleLanguage,
+        login
     }
 
     return (
