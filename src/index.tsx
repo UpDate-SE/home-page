@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { UserContextProvider } from 'context';
 
 import { AppRouter } from 'router/AppRouter';
 import reportWebVitals from './reportWebVitals';

@@ -1,14 +1,14 @@
+import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
+
 import { UserContextProvider } from 'context';
-import { HomePage, LoginPage, RegisterCardPage } from 'pages';
-import React from 'react';
-import { Routes, Route, Navigate, useLocation, BrowserRouter } from 'react-router-dom';
+import { HomePage, LoginPage, CreateCardPage } from 'pages';
 
 export const AppRouter = () => (
     <BrowserRouter>
         <UserContextProvider>
             <Routes>
                 <Route path='/' element={ <HomePage /> } />;
-                <Route path='/new-card' element={ <PrivateRouter component={RegisterCardPage}/> } />;
+                <Route path='/create-card' element={ <PrivateRouter component={CreateCardPage}/> } />;
                 <Route path='/login' element={ <LoggedRouter component={LoginPage} /> } />;
                 <Route path='*' element={ <Navigate to='/' /> } />;
             </Routes>

@@ -43,13 +43,33 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
         return reqToken !== undefined;
     }
 
+    const createBusinessCard = async (card: FormData): Promise<boolean> => {
+        const apiUrl = process.env.REACT_APP_API_URL;
+
+        const config: AxiosRequestConfig = {
+            url: `${apiUrl}/create-business-card`,
+            method: 'POST',
+            data: card,
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+
+        const result = await axios(config)
+            .then(res => res.data !== undefined)
+            .catch(err => {console.error(err.message); return false;});
+
+        return result;    
+    }
+
     const provider = {
         darkMode,
         currentLang,
         langOption,
         toggleDarkMode,
         toggleLanguage,
-        login
+        login,
+        createBusinessCard,
     }
 
     return (

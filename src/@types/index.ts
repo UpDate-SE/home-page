@@ -1,3 +1,5 @@
+import { LoginCredentials } from './businessCard';
+
 export interface UserLanguage {
     language: string;
     flag: string;
@@ -19,6 +21,7 @@ export interface UserContextType {
     toggleDarkMode: () => void;
     toggleLanguage: () => void;
     login: (credentials: LoginCredentials) => Promise<boolean>;
+    createBusinessCard: (card: FormData) => Promise<boolean>;
 }
 
 export type MarketingPlanType = {
@@ -27,7 +30,5 @@ export type MarketingPlanType = {
     price: string;
 }
 
-export type LoginCredentials = {
-    username: string;
-    password: string;
-}
+export * from './businessCard';
+export * from './businessCardForm';
