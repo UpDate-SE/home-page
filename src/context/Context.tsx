@@ -1,10 +1,8 @@
 import React, { PropsWithChildren, useState } from "react";
-import Cookies from "universal-cookie";
 
-import { LanguagesDict, LoginCredentials, UserContextType, UserLanguage } from "@types";
 import axios, { AxiosRequestConfig } from "axios";
 
-const cookies = new Cookies();
+import { LanguagesDict, LoginCredentials, UserContextType, UserLanguage } from "@types";
 
 export const UserContext = React.createContext<UserContextType | null>(null);
 
@@ -14,14 +12,14 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
     const [langOption, setLangOption] = useState<UserLanguage>(() => getOppositeLang(currentLang));
 
     const toggleLanguage = () => {
-        const newLang = getOppositeLang(currentLang); 
-        cookies.set('language', newLang.language, {path: '/', sameSite: 'strict'});
+        const newLang = getOppositeLang(currentLang);
+        localStorage.setItem('language', newLang.language);
         setCurrentLang(newLang);
         setLangOption(currentLang);
     };
 
     const toggleDarkMode = () => {
-        cookies.set('dark-mode', !darkMode, {path: '/', sameSite: 'strict'});
+        localStorage.setItem('dark-mode', JSON.stringify(!darkMode));
         setDarkMode(!darkMode);
     }
 
@@ -39,6 +37,7 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
             .catch(err => console.error(err.data));
         
         if(reqToken) sessionStorage.setItem('token', reqToken);
+        console.log(reqToken);
 
         return reqToken !== undefined;
     }
@@ -91,21 +90,16 @@ const Languages: LanguagesDict = {
 }
 
 const getDarkModePreference = (): boolean => {
-    let darkMode = cookies.get('dark-mode') as boolean | undefined;
-    if(typeof darkMode === 'string') {
-        darkMode = darkMode === 'true';
-    }
-    if(darkMode === undefined) {
-        darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    }
-    return darkMode;
+    const darkMode = localStorage.getItem('dark-mode');
+    if(!darkMode) return window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    return darkMode === 'true';
 }
 
 const getLanguagePreference = (): UserLanguage => {
-    let languagePref = cookies.get('language') as string | undefined;
-    if(!languagePref) {
-        return Languages['ESP'];
-    }
+    const languagePref = localStorage.getItem('language');
+    if(!languagePref) return Languages['ESP'];
+
     return Languages[languagePref];
 }
 
