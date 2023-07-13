@@ -1,0 +1,56 @@
+#card-form-container {
+    padding-top: 12vh;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+#card-form-container #card-form {
+    width: 80%;
+    padding-bottom: 1rem;
+}
+
+#card-form-container #card-form #img-prev {
+    min-width: 200px;
+    min-height: 200px;
+    overflow: hidden;
+}
+
+#card-form-container #card-form #img-prev:hover {
+    cursor: pointer;
+    opacity: 80%;
+}
+
+#card-form-container #card-form #icon-default {
+    min-height: 198px;
+}
+
+#card-form-container #card-form #image-container {
+    width: 201px;
+    height: 201px;
+    object-fit: cover;
+    aspect-ratio: '1:1';
+}
+
+#card-form-container #card-form #add-social-btn {
+    width: 35px;
+    height: 35px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#card-form-container #card-form #inputs-container {
+    max-height: 25vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding-right: 25px !important;
+}
+
+#card-form-container #card-form #delete-social-btn {
+    top: -15px;
+    right: -15px;
+}
+
+#card-form-container #card-form #delete-social-btn:hover {
+    opacity: 80%;
+}
