@@ -3,6 +3,8 @@ import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
 import { UserContextProvider } from 'context';
 import { HomePage, LoginPage, CreateCardPage } from 'pages';
 
+import { LoggedRouter, PrivateRouter } from './conditional';
+
 export const AppRouter = () => (
     <BrowserRouter>
         <UserContextProvider>
@@ -15,23 +17,3 @@ export const AppRouter = () => (
         </UserContextProvider>
     </BrowserRouter>
 )
-
-type ConditionalRouter = {
-    component: React.ComponentType;
-}
-
-const LoggedRouter = ({component: RouteComponent}: ConditionalRouter): JSX.Element => {
-    const token = sessionStorage.getItem('token');
-    
-    if(token) return <Navigate to='/' />
-
-    return <RouteComponent />
-}
-
-const PrivateRouter = ({component: RouteComponent}: ConditionalRouter): JSX.Element => {
-    const token = sessionStorage.getItem('token');
-
-    if(!token) return <Navigate to='/' />
-
-    return <RouteComponent />;
-}

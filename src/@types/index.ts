@@ -15,6 +15,7 @@ export interface WindowDimensions {
 }
 
 export interface UserContextType {
+    token: string | null;
     darkMode: boolean;
     currentLang: UserLanguage;
     langOption: UserLanguage;
@@ -30,5 +31,6 @@ export type MarketingPlanType = {
     price: string;
 }
 
+export * from './conditionalRouter';
 export * from './businessCard';
 export * from './businessCardForm';

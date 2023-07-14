@@ -3,13 +3,15 @@ import React, { PropsWithChildren, useState } from "react";
 import axios, { AxiosRequestConfig } from "axios";
 
 import { LanguagesDict, LoginCredentials, UserContextType, UserLanguage } from "@types";
+import useToken from "hooks/useToken";
 
 export const UserContext = React.createContext<UserContextType | null>(null);
 
 export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element => {
     const [darkMode, setDarkMode] = useState<boolean>(() => getDarkModePreference());
     const [currentLang, setCurrentLang] = useState<UserLanguage>(() => getLanguagePreference());
-    const [langOption, setLangOption] = useState<UserLanguage>(() => getOppositeLang(currentLang));
+    const [langOption, setLangOption] = useState<UserLanguage>(() => getOppositeLang(currentLang));    
+    const {token, setToken} = useToken();
 
     const toggleLanguage = () => {
         const newLang = getOppositeLang(currentLang);
@@ -36,10 +38,13 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
             .then(res => res.data)
             .catch(err => console.error(err.data));
         
-        if(reqToken) sessionStorage.setItem('token', reqToken);
-        console.log(reqToken);
+        if(!reqToken) return false;
 
-        return reqToken !== undefined;
+        //sessionStorage.setItem('token', reqToken);
+        console.log(reqToken);
+        setToken(reqToken);
+
+        return true;
     }
 
     const createBusinessCard = async (card: FormData): Promise<boolean> => {
@@ -50,7 +55,8 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
             method: 'POST',
             data: card,
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `beader ${token}`
             }
         }
 
@@ -62,6 +68,7 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
     }
 
     const provider = {
+        token,
         darkMode,
         currentLang,
         langOption,
