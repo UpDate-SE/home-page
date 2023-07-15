@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Navbar, NavbarBrand } from "reactstrap";
 
 import { ACSELogo } from "assets";
@@ -9,11 +9,8 @@ import { DarkModeToggler, LangSwitcher } from 'components';
 import 'scss/css/style.css';
 import 'styles/NavbarHome.css';
 
-const NavBarHome = () => {
-    const { darkMode, currentLang } = useContext(UserContext) as UserContextType; 
-    const [collapseOpen, setCollapseOpen] = useState<boolean>(false);
-
-    const toggleCollapse = () => setCollapseOpen(!collapseOpen);
+const NavBarDefault = () => {
+    const { darkMode } = useContext(UserContext) as UserContextType;
 
     return (
         <Navbar 
@@ -29,7 +26,7 @@ const NavBarHome = () => {
             container="fluid"
         >
             <NavbarBrand
-                href='#'
+                href='/'
                 className='opacity-75-hover'
             >
                 <img src={ACSELogo}
@@ -51,4 +48,4 @@ const NavBarHome = () => {
     )        
 }
 
-export default NavBarHome;
+export default NavBarDefault;
