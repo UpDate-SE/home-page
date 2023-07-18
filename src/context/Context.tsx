@@ -2,7 +2,7 @@ import React, { PropsWithChildren, useState } from "react";
 
 import axios, { AxiosRequestConfig } from "axios";
 
-import { LanguagesDict, LoginCredentials, UserContextType, UserLanguage } from "@types";
+import { BusinessCard, LanguagesDict, LoginCredentials, PhotoIsString, UserContextType, UserLanguage, WithId } from "@types";
 import useToken from "hooks/useToken";
 
 export const UserContext = React.createContext<UserContextType | null>(null);
@@ -67,6 +67,27 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
         return result;    
     }
 
+    const getBusinessCard = async (company: string, name: string): Promise<WithId<PhotoIsString<BusinessCard>> | null> => {
+        const apiUrl = process.env.REACT_APP_API_URL;
+
+        const data = {
+            companyName: company,
+            name: name
+        }
+
+        const config: AxiosRequestConfig = {
+            url: `${apiUrl}/get-business-card`,
+            method: 'POST',
+            data: data
+        }
+
+        const res = await axios(config)
+            .then(res => res.data as WithId<PhotoIsString<BusinessCard>>)
+            .catch(_ => null);
+
+        return res;
+    }
+
     const provider = {
         token,
         darkMode,
@@ -76,6 +97,7 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
         toggleLanguage,
         login,
         createBusinessCard,
+        getBusinessCard
     }
 
     return (
