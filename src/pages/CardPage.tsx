@@ -1,38 +1,22 @@
-import { useContext,  useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import { Col, Container, Row } from "reactstrap";
 
-import { BusinessCard, PhotoIsString, UserContextType, WithId } from "@types";
+import { BusinesCardInDB, UserContextType } from "@types";
 import { UserContext } from "context";
 
 import { NavbarDefault } from "components";
-import { LoadingPage } from "pages";
+
+import { allUpperCaseFirst, removeDashes } from "@helpers/card-formatter";
 
 import 'scss/css/style.css';
 import 'styles/CardPage.css';
 
 type CardPageProps = {
-    companyName: string;
-    name: string;
+    businessCard: BusinesCardInDB;
 }
 
-const CardPage = ({companyName, name}: CardPageProps): JSX.Element => {
+const CardPage = ({businessCard}: CardPageProps): JSX.Element => {
     const { darkMode } = useContext(UserContext) as UserContextType;
-    
-    const { getBusinessCard } = useContext(UserContext) as UserContextType;
-    const [businessCard, setBusinessCard] = useState<WithId<PhotoIsString<BusinessCard>> | null>(null);
-    const navigate = useNavigate();
-
-    const fetchBusinessCardData = async () => {
-        const businessCardOrNull = await getBusinessCard(removeDashes(companyName), removeDashes(name));
-        if(!businessCardOrNull) navigate('/');
-        setBusinessCard(businessCardOrNull);
-    }
-
-    if(!businessCard) {
-        fetchBusinessCardData();
-        return <LoadingPage />;
-    }
 
     return (
         <Container
@@ -115,8 +99,5 @@ const CardPage = ({companyName, name}: CardPageProps): JSX.Element => {
         </Container>
     )
 }
-
-const removeDashes = (str: string) => str.replace(/-/g, ' ');
-const allUpperCaseFirst = (str: string) => str.replace(/\b\w/g, (match) => match.toUpperCase());
 
 export default CardPage;
