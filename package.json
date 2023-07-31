@@ -1,6 +1,6 @@
 {
   "name": "home-page",
-  "homepage": "https://update-se.github.io/",
+  "homepage": "https://www.advancedcodese.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -31,11 +31,10 @@
   },
   "scripts": {
     "start": "yarn run watch-sass & react-scripts start",
-    "predeploy": "yarn build; yarn run add-cname",
-    "add-cname": "echo www.advancedcodese.com > build/CNAME",
-    "deploy": "gh-pages -d build",
+    "deploy": "vercel --prod",
     "watch-sass": "sass --watch ./src/scss/custom.scss ./src/scss/css/style.css",
     "build": "react-scripts build",
+    "build:prod": "env-cmd -f ./.env.production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -43,7 +42,10 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "react-hooks/exhaustive-deps": "off"
+    }
   },
   "browserslist": {
     "production": [
@@ -56,5 +58,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "vercel": "^31.2.0"
   }
 }

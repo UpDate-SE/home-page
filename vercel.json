@@ -1,0 +1,6 @@
+{
+    "buildCommand": "yarn build:prod",
+    "rewrites":  [
+        {"source": "/(.*)", "destination": "/"}
+    ]
+}
