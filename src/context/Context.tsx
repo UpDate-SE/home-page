@@ -2,7 +2,7 @@ import React, { PropsWithChildren, useState } from "react";
 
 import axios, { AxiosRequestConfig } from "axios";
 
-import { BusinessCard, LanguagesDict, LoginCredentials, PhotoIsString, UserContextType, UserLanguage, WithId } from "@types";
+import { BusinesCardInDB, LanguagesDict, LoginCredentials, UserContextType, UserLanguage } from "@types";
 import useToken from "hooks/useToken";
 
 export const UserContext = React.createContext<UserContextType | null>(null);
@@ -39,9 +39,6 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
             .catch(err => console.error(err.data));
         
         if(!reqToken) return false;
-
-        //sessionStorage.setItem('token', reqToken);
-        console.log(reqToken);
         setToken(reqToken);
 
         return true;
@@ -56,7 +53,7 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
             data: card,
             headers: {
                 'Content-Type': 'multipart/form-data',
-                'Authorization': `beader ${token}`
+                'Authorization': `bearer ${token}`
             }
         }
 
@@ -67,7 +64,46 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
         return result;    
     }
 
-    const getBusinessCard = async (company: string, name: string): Promise<WithId<PhotoIsString<BusinessCard>> | null> => {
+    const getAllCards = async(): Promise<BusinesCardInDB[]> => {
+        const apiUrl = process.env.REACT_APP_API_URL;
+
+        const config: AxiosRequestConfig = {
+            url: `${apiUrl}/get-all-cards`,
+            method: 'POST',
+            headers: {
+                'Authorization': `bearer ${token}`
+            }
+        }
+
+        const res = await axios(config)
+            .then(res => res.data as BusinesCardInDB[] | null)
+            .catch(_ => null);
+        
+        if(!res) return [];
+        return res;
+    }
+
+    const getBusinessCardWithID = async(cardID: string): Promise<BusinesCardInDB | null> => {
+        const apiUrl = process.env.REACT_APP_API_URL;
+
+        const data = {
+            _id: cardID 
+        }
+
+        const config: AxiosRequestConfig = {
+            url: `${apiUrl}/get-business-card-id`,
+            method: 'POST',
+            data: data
+        }
+
+        const res = await axios(config)
+            .then(res => res.data as BusinesCardInDB)
+            .catch(_ => null);
+
+        return res;
+    }
+
+    const getBusinessCard = async (company: string, name: string): Promise<BusinesCardInDB | null> => {
         const apiUrl = process.env.REACT_APP_API_URL;
 
         const data = {
@@ -82,7 +118,7 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
         }
 
         const res = await axios(config)
-            .then(res => res.data as WithId<PhotoIsString<BusinessCard>>)
+            .then(res => res.data as BusinesCardInDB)
             .catch(_ => null);
 
         return res;
@@ -97,7 +133,9 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
         toggleLanguage,
         login,
         createBusinessCard,
-        getBusinessCard
+        getAllCards,
+        getBusinessCard,
+        getBusinessCardWithID
     }
 
     return (
