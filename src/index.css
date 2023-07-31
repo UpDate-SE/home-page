@@ -31,6 +31,10 @@ code {
   min-width: unset !important;
 }
 
+.under-navbar{ 
+  padding-top: 10vh;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }

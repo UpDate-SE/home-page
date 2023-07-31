@@ -1,0 +1,8 @@
+#loading-page {
+    height: 100vh;
+}
+
+#loading-page #spinner {
+    height: 15rem !important;
+    width: 15rem !important;
+}

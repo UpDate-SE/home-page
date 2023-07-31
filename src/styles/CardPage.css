@@ -1,0 +1,18 @@
+#card-page {
+    min-height: 100vh;
+}
+
+#card-page #card-page-content {
+    padding-top: 10vh;
+}
+
+#card-page-content #photo {
+    aspect-ratio: '1:1';
+    max-width: 300px;
+}
+
+#card-page-content .social-icon {
+    max-height: 30px;
+    object-fit: cover;
+    aspect-ratio: '1:1';
+}

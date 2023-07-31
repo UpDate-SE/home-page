@@ -1,4 +1,4 @@
-import { LoginCredentials } from './businessCard';
+import { BusinesCardInDB, LoginCredentials } from './businessCard';
 
 export interface UserLanguage {
     language: string;
@@ -22,13 +22,24 @@ export interface UserContextType {
     toggleDarkMode: () => void;
     toggleLanguage: () => void;
     login: (credentials: LoginCredentials) => Promise<boolean>;
+    getAllCards: () => Promise<BusinesCardInDB[]>;
     createBusinessCard: (card: FormData) => Promise<boolean>;
+    getBusinessCard: (company: string, name: string) => Promise<BusinesCardInDB | null>;
+    getBusinessCardWithID: (cardID: string) => Promise<BusinesCardInDB | null>;
 }
 
 export type MarketingPlanType = {
     image: string;
     perks: Array<string>;
     price: string;
+}
+
+export type WithId<Type> = {[Property in keyof Type]: Type[Property]} & {_id: string}
+
+export type PhotoIsString<Type> = {
+    [Property in keyof Type as Exclude<Property, "photo">]: Type[Property]
+} & {
+    photo: string;
 }
 
 export * from './conditionalRouter';

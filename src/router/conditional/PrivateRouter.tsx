@@ -7,8 +7,6 @@ import { UserContext } from "context";
 const PrivateRouter = ({component: RouteComponent}: ConditionalRouter): JSX.Element => {
     const { token } = useContext(UserContext) as UserContextType;
 
-    console.log(token);
-
     if(!token) return <Navigate to='/' />
 
     return <RouteComponent />;

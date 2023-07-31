@@ -1,5 +1,7 @@
+export { default as BusinessCardSmall } from './BusinessCardSmall';
 export { default as CarouselHome } from './CarouselHome';
 export { default as DarkModeToggler } from './DarkModeToggler';
+export { default as EditCardModal } from './EditCardModal';
 export { default as FooterHome } from './Footer';
 export { default as LangSwitcher } from './LangSwitcher';
 export { default as LoginForm } from './LoginForm';
