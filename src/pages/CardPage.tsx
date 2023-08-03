@@ -1,12 +1,16 @@
 import { useContext } from "react";
-import { Col, Container, Row } from "reactstrap";
+import { Button, Col, Container, Row } from "reactstrap";
 
-import { BusinesCardInDB, UserContextType } from "@types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+
+import { BusinesCardInDB, SupportedSocials, UserContextType } from "@types";
 import { UserContext } from "context";
 
 import { NavbarDefault } from "components";
 
 import { allUpperCaseFirst, removeDashes } from "@helpers/card-formatter";
+import { socialMediaIconsDict } from "@helpers/social-media-dict";
 
 import 'scss/css/style.css';
 import 'styles/CardPage.css';
@@ -19,27 +23,30 @@ const CardPage = ({businessCard}: CardPageProps): JSX.Element => {
     const { darkMode } = useContext(UserContext) as UserContextType;
 
     return (
-        <Container
-            id='card-page'
-            fluid
+        <Container id='card-page'
             className={`
+                p-0 g-0
                 ${darkMode ? 'bg-dark-dark':''}
+                overflow-hidden
             `}
+            fluid
         >
             <NavbarDefault />
             <Container
                 id='card-page-content'
-                className='w-75'
-                fluid
+                className='overflow-hidden'
             >
                 <Row
+                    id='row-top'
                     className={`
                         ${darkMode ? 'text-light' : ''}
                         justify-content-evenly align-items-center
                         mx-auto mb-3
                     `}
                 >
-                    <Col xs={6}>
+                    <Col xs={6}
+                        id='col-info'
+                    >
                         <span
                             className='fs-1 fw-bold'
                         >
@@ -54,6 +61,7 @@ const CardPage = ({businessCard}: CardPageProps): JSX.Element => {
                         </div>
                     </Col>
                     <Col xs={6}
+                        id='col-photo'
                         className='text-end'
                     >
                         <img
@@ -72,29 +80,64 @@ const CardPage = ({businessCard}: CardPageProps): JSX.Element => {
                         />
                     </Col>
                 </Row>
-                {
-                    businessCard.socials.map((social, index) => (
-                        <a
-                            key={index}
-                            href={social}
-                            className={`
-                                ${darkMode ? 'text-light' : 'text-dark'}
-                                text-decoration-none
-                                fs-3
-                            `}
+                <a href={`mailto:${businessCard.email}`}
+                    className={`
+                        ${darkMode ? 'text-dark' : 'text-light'}
+                        text-decoration-none
+                    `}
+                >
+                    <div className='text-center mb-3'>
+                        <Button
+                            id='contact-button'
+                            className='w-100'
+                            color={`${darkMode ? 'primary-dark' : 'primary'}`}
                         >
-                            <div
-                                className={`
-                                    ${darkMode ? 'border-light': 'border-dark'}
-                                    border rounded
-                                    mb-2
-                                `}
-                            >
-                                {social}
-                            </div>
-                        </a>
-                    ))
-                }
+                            <FontAwesomeIcon
+                                icon={faEnvelope}
+                                className='me-2'
+                            />
+                            Contactar
+                        </Button>
+                    </div>
+                </a>
+                <div
+                    className='d-flex flex-wrap justify-content-around'
+                >
+                    {
+                        Object.keys(businessCard.socials).map((social, index) => {
+                            const socialName = social as SupportedSocials;
+                            const socialUrl = businessCard.socials[socialName];
+
+                            if(!socialUrl) return null;
+
+                            return (
+                                <a
+                                    id='social-a-wrapper'
+                                    key={index}
+                                    href={socialUrl}
+                                    className={`
+                                        text-decoration-none
+                                        d-flex justify-content-center
+                                    `}
+                                >
+                                    <div
+                                        id={social}
+                                        className='
+                                            rounded-circle
+                                            mb-2 social-media-icon
+                                            d-flex align-items-center justify-content-center
+                                        '
+                                        style={socialMediaIconsDict[socialName].style}
+                                    >
+                                        <FontAwesomeIcon
+                                            icon={socialMediaIconsDict[socialName].icon}
+                                        />
+                                    </div>
+                                </a>
+                            )
+                        })
+                    }
+                </div>
             </Container>
         </Container>
     )

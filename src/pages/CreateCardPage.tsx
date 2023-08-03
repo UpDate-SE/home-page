@@ -1,8 +1,10 @@
 import { useContext, useState } from 'react';
 import { Container } from 'reactstrap';
+import { useNavigate } from 'react-router';
 
 import { BusinessCard, UserContextType } from '@types';
 import { UserContext } from 'context';
+
 import { CreateCardForm, NavbarDefault } from 'components';
 
 import 'scss/css/style.css';
@@ -11,6 +13,7 @@ import 'styles/CreateCardPage.css';
 const CreateCardPage = (): JSX.Element => {
     const { createBusinessCard, darkMode } = useContext(UserContext) as UserContextType;
     const [loading, setLoading] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const bCardtoFormData = (card: BusinessCard): FormData => {
         const formData = new FormData();
@@ -21,12 +24,7 @@ const CreateCardPage = (): JSX.Element => {
             formData.append(key, cRecord[key]);
         }
 
-        for(const social of socials) {
-            formData.append('socials', social);
-        }
-
-        console.log('form: ', formData);
-
+        formData.append('socials', JSON.stringify(socials));
         return formData;
     }
 
@@ -34,7 +32,7 @@ const CreateCardPage = (): JSX.Element => {
         setLoading(true);
         const formData = bCardtoFormData(card);
         const res = await createBusinessCard(formData);
-        console.log(res);
+        if(res) return navigate('/dashboard');
         setLoading(false);
     }
 

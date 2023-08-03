@@ -1,4 +1,5 @@
 import { PhotoIsString, WithId } from "@types";
+import { SocialMedia } from "./socialMedia";
 
 export type LoginCredentials = {
     username: string;
@@ -12,7 +13,7 @@ export type BusinessCard = {
     description: string;
     photo: File | null;
     email: string;
-    socials: Array<string>;
+    socials: SocialMedia;
 }
 
 export type BusinesCardInDB = WithId<PhotoIsString<BusinessCard>>;

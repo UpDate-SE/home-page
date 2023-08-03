@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Container, Modal, ModalBody, ModalHeader, Spinner } from 'reactstrap';
+import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 
 import { BusinesCardInDB, BusinessCard, WithId } from '@types';
 

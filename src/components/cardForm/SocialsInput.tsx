@@ -1,85 +1,75 @@
-import { useContext, useRef, useState } from "react";
-import { Button } from "reactstrap";
+import { useContext, useState } from "react";
+import { FormGroup, Input, Label } from "reactstrap";
 
-import { CardInput, UserContextType } from "@types";
+import { CardInput, SocialMedia, SupportedSocials, UserContextType } from "@types";
 import { UserContext } from "context";
 
-import { SocialsTextInputs } from 'components'; 
+import { initialSocialMedia } from "@helpers/initial-card";
+import { isValidUrl } from "@helpers/url-validator";
 
 import 'scss/css/style.css';
 import 'styles/CreateCardForm.css';
 
 const SocialsInput = ({name, valueChange, setValidInput}: CardInput): JSX.Element => {
     const { currentLang, darkMode } = useContext(UserContext) as UserContextType;
-    const [socials, setSocials] = useState<string[]>(['']);
-    const containerRef = useRef<HTMLDivElement>(null);
+    const [socials, setSocials] = useState<SocialMedia>(initialSocialMedia);
 
-    const isEveryStringNotEmpty = (array: string[]):boolean => array.every(element => element.length > 0);
+    const onTextChange = (value: string, key: keyof SocialMedia) => {
+        const socialUrl = value.length > 0 ? value : null;
 
-    const pushSocial = () => {
-        setSocials([...socials, '']);
-        setValidInput(name, false);
-    }
-
-    const removeSocial = (index: number) => {
-        if(socials.length === 1) return;
-        const newSocials = socials.slice();
-        newSocials.splice(index, 1);
-        setSocials(newSocials);
-        setValidInput(name, isEveryStringNotEmpty(newSocials));
-    }
-
-    const onTextChange = (value: string, index: number) => {
-        const newSocials = socials.slice();
-        const valid = value.length > 0;
-
-        newSocials[index] = value;
-        setSocials(newSocials);
+        let newSocials = {...socials }
+        newSocials[key] = socialUrl;
         
+        const valid = socialUrl ? isValidUrl(value) : true;
+
         setValidInput(name, valid);
-        if(valid) valueChange(name, newSocials);
+
+        if(valid) {
+            setSocials(newSocials);
+            valueChange(name, newSocials);
+        }
     }
 
     return (
-        <div>
-            <div className='d-flex align-items-center'>
-                <span
-                    className={`
-                        ${darkMode ? 'text-light' : ''}
-                        me-3
-                    `}
-                >
-                    {currentLang.language === 'ESP' ?
-                        'Redes sociales: ' : 'Social media: '
-                    }
-                </span>
-                <Button
-                    id='add-social-btn'
-                    color={`${darkMode ? 'primary-dark' : 'primary'}`}
-                    onClick={pushSocial}
-                    className={`
-                        ${darkMode ? 'text-dark' : 'text-light'}
-                        rounded-circle
-                        d-flex align-items-center justify-content-center                  
-                    `}
-                >
-                    +
-                </Button>
-            </div>
-            <div id='inputs-container'
-                ref={containerRef}
+        <div
+            className={`
+                ${darkMode ? 'text-light' : ''}
+                mb-2
+            `}
+        >
+            <span>
+                {currentLang.language === 'ESP' ?
+                    'Redes Sociales:'
+                    :
+                    'Social Media:'
+                }
+            </span>
+            <div
+                id='socials-input'
                 className={`
-                    px-2 my-2
-                    ${darkMode ? 'border-primary-dark' : 'border-primary'}
-                    border border-2 rounded
+                    ${darkMode ? 'bg-dark-dark border-primary-dark' : 'border-primary'}
+                    border rounded
+                    p-2
                 `}
             >
-                <SocialsTextInputs
-                    socials={socials}
-                    containerRef={containerRef}
-                    removeSocial={removeSocial}
-                    onTextChange={onTextChange}
-                />
+                {
+                    Object.keys(socials).map((socialName, index) => (
+                        <FormGroup key={index}>
+                            <Label for={socialName}>
+                                {socialName}
+                            </Label>
+                            <Input
+                                id={socialName}
+                                className={`
+                                    ${darkMode ? 'bg-dark-dark text-light' : ''}
+                                `}
+                                type='url'
+                                placeholder={`https://${socialName}.com`}
+                                onChange={(ev) => onTextChange(ev.target.value, socialName as SupportedSocials)}
+                            />
+                        </FormGroup>
+                    ))
+                }
             </div>
         </div>
     )

@@ -1,23 +1,15 @@
 import { useContext, useState } from 'react';
 import { Button, Col, Container, Form, Row, Spinner } from 'reactstrap';
 
-import { BCardKeys, BusinessCard, UserContextType, ValidatorDict } from '@types';
+import { BCardKeys, BusinessCard, SocialMedia, UserContextType, ValidatorDict } from '@types';
 import { UserContext } from 'context';
 
 import { DescriptionFormGroup, ImageInput, RowTextFormGroup, SocialsInput } from 'components';
 
+import { initialFormData } from '@helpers/initial-card';
+
 import 'scss/css/style.css';
 import 'styles/CreateCardForm.css';
-
-const initialFormData: BusinessCard = {
-    companyName: '',
-    name: '',
-    position: '',
-    description: '',
-    photo: null,
-    email: '',
-    socials: []
-}
 
 const InitialFormValidationDict: ValidatorDict<BusinessCard> = {
     companyName: false,
@@ -26,7 +18,7 @@ const InitialFormValidationDict: ValidatorDict<BusinessCard> = {
     description: false,
     photo: false,
     email: false,
-    socials: false 
+    socials: true
 }
 
 type CreateCardFormProps = {
@@ -53,7 +45,7 @@ const CreateCardForm = ({createCard, loading }: CreateCardFormProps):JSX.Element
         setValidForm(sumObjectValues(newValidationDict) === 7);
     };
 
-    const handleFormDataChange = (name: BCardKeys, value: string | File | string[]) => {
+    const handleFormDataChange = (name: BCardKeys, value: string | File | SocialMedia) => {
         setValidationDict({...validationDict, [name]: true});
         setFormData(prevFormData => ({ ...prevFormData, [name]: value }));
     }
