@@ -32,25 +32,7 @@
     aspect-ratio: '1:1';
 }
 
-#card-form-container #card-form #add-social-btn {
-    width: 35px;
-    height: 35px;
-    font-weight: bold;
-    font-size: 30px;
-}
-
-#card-form-container #card-form #inputs-container {
-    max-height: 25vh;
-    overflow-x: hidden;
+#card-form-container #card-form #socials-input {
+    max-height: 30vh;
     overflow-y: scroll;
-    padding-right: 25px !important;
-}
-
-#card-form-container #card-form #delete-social-btn {
-    top: -15px;
-    right: -15px;
-}
-
-#card-form-container #card-form #delete-social-btn:hover {
-    opacity: 80%;
 }
