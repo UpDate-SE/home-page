@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Collapse, Container, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from "reactstrap";
 
-import { ACSELogo } from "assets";
+import { ACSELogo, ACSELogoDark } from "assets";
 import { UserContext } from "context";
 import { UserContextType } from "@types";
 import { DarkModeToggler, LangSwitcher } from 'components';
@@ -30,11 +30,14 @@ const NavBarHome = () => {
         >
             <NavbarBrand
                 href='#'
-                className='opacity-75-hover'
+                className='opacity-75-hover d-flex align-items-center'
+                style={{
+                    height: `${collapseOpen ? '10vh' : ''}`
+                }}
             >
-                <img src={ACSELogo}
+                <img src={darkMode ? ACSELogoDark : ACSELogo}
                     id='advanced-logo'
-                    className={`${darkMode ? 'filter-dark': ''} img-fluid`}
+                    className='img-fluid'
                     alt='company logo'
                     draggable={false}
                 />

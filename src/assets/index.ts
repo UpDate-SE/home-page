@@ -1,4 +1,5 @@
 export { default as ACSELogo } from './ACSELogo.webp';
+export { default as ACSELogoDark } from './ACSELogo-dark.webp';
 export { default as CaorIncLogo } from './caor.webp';
 export { default as Meeting } from './meeting.webp';
 export { default as TeamProcess } from './team-process.webp';

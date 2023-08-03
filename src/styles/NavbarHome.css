@@ -1,16 +1,20 @@
 #nav-bar {
-    height: 10vh !important;
+    min-height: 10vh !important;
 }
 
 #nav-bar #advanced-logo {
-    min-height: 80px;
-    height: 8vh !important;
+    min-height: 30px;
+    max-height: 8vh !important;
 }
 
 @media screen and (max-width: 768px) {
     #nav-bar {
-        padding: 0;
+        padding: 0 !important;
         height: unset !important;
+    }
+
+    #nav-bar #advanced-logo {
+        max-width: 50%;
     }
 
     #nav-bar #collapsed-items {

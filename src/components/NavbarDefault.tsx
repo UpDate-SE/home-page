@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Collapse, Navbar, NavbarBrand, NavbarToggler } from "reactstrap";
 
-import { ACSELogo } from "assets";
+import { ACSELogo, ACSELogoDark } from "assets";
 import { UserContext } from "context";
 import { UserContextType } from "@types";
 import { DarkModeToggler, LangSwitcher } from 'components';
@@ -32,9 +32,9 @@ const NavBarDefault = () => {
                 href='/'
                 className='opacity-75-hover'
             >
-                <img src={ACSELogo}
+                <img src={darkMode ? ACSELogoDark : ACSELogo}
                     id='advanced-logo'
-                    className={`${darkMode ? 'filter-dark': ''} img-fluid`}
+                    className='img-fluid'
                     alt='company logo'
                     draggable={false}
                 />
