@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { Navbar, NavbarBrand } from "reactstrap";
+import { useContext, useState } from "react";
+import { Collapse, Navbar, NavbarBrand, NavbarToggler } from "reactstrap";
 
 import { ACSELogo } from "assets";
 import { UserContext } from "context";
@@ -12,8 +12,12 @@ import 'styles/NavbarHome.css';
 const NavBarDefault = () => {
     const { darkMode } = useContext(UserContext) as UserContextType;
 
+    const [collapseOpen, setCollapseOpen] = useState<boolean>(false);
+
+    const toggleCollapse = () => setCollapseOpen(!collapseOpen);
+
     return (
-        <Navbar 
+        <Navbar
             light = {!darkMode}
             dark = {darkMode}
             fixed='top' 
@@ -23,7 +27,6 @@ const NavBarDefault = () => {
                 ps-3 user-select-none border-bottom
                 ${darkMode ? 'border-primary-dark' : 'border-primary'}    
             `}
-            container="fluid"
         >
             <NavbarBrand
                 href='/'
@@ -36,14 +39,21 @@ const NavBarDefault = () => {
                     draggable={false}
                 />
             </NavbarBrand>
-            <div id='options'
-                className='d-flex'
+            <NavbarToggler onClick={toggleCollapse} className='ms-auto' />
+            <Collapse navbar
+                id='nav-bar-collapse'
+                isOpen={collapseOpen}
+                className={darkMode ? 'bg-dark-dark' : 'bg-light'}
             >
-                <DarkModeToggler />
-                <LangSwitcher
-                    inNavbar
-                />
-            </div>
+                <div id='options-default'
+                    className='d-flex ms-auto'
+                >
+                    <DarkModeToggler />
+                    <LangSwitcher
+                        inNavbar
+                    />
+                </div>
+            </Collapse>
         </Navbar>
     )        
 }
