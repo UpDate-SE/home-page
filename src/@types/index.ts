@@ -45,3 +45,4 @@ export type PhotoIsString<Type> = {
 export * from './conditionalRouter';
 export * from './businessCard';
 export * from './businessCardForm';
+export * from './socialMedia';
