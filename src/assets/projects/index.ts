@@ -1,0 +1,1 @@
+export { default as ZoomerChatLogo } from './zoomer.webp';
