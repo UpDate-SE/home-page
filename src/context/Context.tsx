@@ -44,11 +44,11 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
         return true;
     }
 
-    const createBusinessCard = async (card: FormData): Promise<boolean> => {
+    const createBusinessCard = async (card: FormData): Promise<BusinesCardInDB | null> => {
         const apiUrl = process.env.REACT_APP_API_URL;
 
         const config: AxiosRequestConfig = {
-            url: `${apiUrl}/create-business-card`,
+            url: `${apiUrl}/create-card`,
             method: 'POST',
             data: card,
             headers: {
@@ -58,8 +58,28 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
         }
 
         const result = await axios(config)
-            .then(res => res.data !== undefined)
-            .catch(err => {console.error(err.message); return false;});
+            .then(res => res.data)
+            .catch(err => {console.error(err.message); return null;});
+
+        return result;
+    }
+
+    const editCard = async (card: FormData): Promise<BusinesCardInDB | null> => {
+        const apiUrl = process.env.REACT_APP_API_URL;
+
+        const config: AxiosRequestConfig = {
+            url: `${apiUrl}/edit-card`,
+            method: 'POST',
+            data: card,
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `bearer ${token}`
+            }
+        }
+
+        const result = await axios(config)
+            .then(res => res.data as BusinesCardInDB)
+            .catch(err => {console.error(err.message); return null});
 
         return result;    
     }
@@ -91,7 +111,7 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
         }
 
         const config: AxiosRequestConfig = {
-            url: `${apiUrl}/get-business-card-id`,
+            url: `${apiUrl}/get-card`,
             method: 'POST',
             data: data
         }
@@ -112,7 +132,7 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
         }
 
         const config: AxiosRequestConfig = {
-            url: `${apiUrl}/get-business-card`,
+            url: `${apiUrl}/find-card`,
             method: 'POST',
             data: data
         }
@@ -133,6 +153,7 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
         toggleLanguage,
         login,
         createBusinessCard,
+        editCard,
         getAllCards,
         getBusinessCard,
         getBusinessCardWithID

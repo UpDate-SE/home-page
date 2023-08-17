@@ -4,16 +4,16 @@ import { Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileCirclePlus, faUser } from '@fortawesome/free-solid-svg-icons';
 
-import { CardInput, UserContextType } from '@types';
+import { ImageInputProps, UserContextType } from '@types';
 import { UserContext } from 'context';
 
 import 'scss/css/style.css';
-import 'styles/CreateCardForm.css';
+import 'styles/CardForm.css';
 
-const ImageInput = ({name, valueChange, setValidInput}: CardInput ) => {
+const ImageInput = ({name, valueChange, initialValue, setValidInput}: ImageInputProps ) => {
     const { currentLang, darkMode } = useContext(UserContext) as UserContextType;
     const [hover, setHover] = useState<boolean>(false);
-    const [image, setImage] = useState<string | null>(null);
+    const [image, setImage] = useState<string | null>(initialValue);
     
     const onImageChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
         const file = ev.target.files![0];

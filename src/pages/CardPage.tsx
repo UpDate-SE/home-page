@@ -7,10 +7,9 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { BusinesCardInDB, SupportedSocials, UserContextType } from "@types";
 import { UserContext } from "context";
 
-import { NavbarDefault } from "components";
+import { ICardSocialMedia, NavbarDefault } from "components";
 
 import { allUpperCaseFirst, removeDashes } from "@helpers/card-formatter";
-import { socialMediaIconsDict } from "@helpers/social-media-dict";
 
 import 'scss/css/style.css';
 import 'styles/CardPage.css';
@@ -25,7 +24,7 @@ const CardPage = ({businessCard}: CardPageProps): JSX.Element => {
     return (
         <Container id='card-page'
             className={`
-                p-0 g-0
+                pt-4 g-0
                 ${darkMode ? 'bg-dark-dark':''}
                 overflow-hidden
             `}
@@ -34,7 +33,7 @@ const CardPage = ({businessCard}: CardPageProps): JSX.Element => {
             <NavbarDefault />
             <Container
                 id='card-page-content'
-                className='overflow-hidden'
+                className='overflow-hidden under-navbar'
             >
                 <Row
                     id='row-top'
@@ -100,8 +99,8 @@ const CardPage = ({businessCard}: CardPageProps): JSX.Element => {
                         </Button>
                     </div>
                 </a>
-                <div
-                    className='d-flex flex-wrap justify-content-around'
+                <div id='socials-container'
+                    className='d-flex flex-wrap'
                 >
                     {
                         Object.keys(businessCard.socials).map((social, index) => {
@@ -111,29 +110,11 @@ const CardPage = ({businessCard}: CardPageProps): JSX.Element => {
                             if(!socialUrl) return null;
 
                             return (
-                                <a
-                                    id='social-a-wrapper'
+                                <ICardSocialMedia
+                                    url={socialUrl}
+                                    social={socialName}
                                     key={index}
-                                    href={socialUrl}
-                                    className={`
-                                        text-decoration-none
-                                        d-flex justify-content-center
-                                    `}
-                                >
-                                    <div
-                                        id={social}
-                                        className='
-                                            rounded-circle
-                                            mb-2 social-media-icon
-                                            d-flex align-items-center justify-content-center
-                                        '
-                                        style={socialMediaIconsDict[socialName].style}
-                                    >
-                                        <FontAwesomeIcon
-                                            icon={socialMediaIconsDict[socialName].icon}
-                                        />
-                                    </div>
-                                </a>
+                                />
                             )
                         })
                     }

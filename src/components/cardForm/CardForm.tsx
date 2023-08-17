@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { Button, Col, Container, Form, Row, Spinner } from 'reactstrap';
 
-import { BCardKeys, BusinessCard, SocialMedia, UserContextType, ValidatorDict } from '@types';
+import { BCardKeys, BusinessCard, SocialMedia, UserContextType, ValidatorDict, WithId } from '@types';
 import { UserContext } from 'context';
 
 import { DescriptionFormGroup, ImageInput, RowTextFormGroup, SocialsInput } from 'components';
@@ -9,9 +9,9 @@ import { DescriptionFormGroup, ImageInput, RowTextFormGroup, SocialsInput } from
 import { initialFormData } from '@helpers/initial-card';
 
 import 'scss/css/style.css';
-import 'styles/CreateCardForm.css';
+import 'styles/CardForm.css';
 
-const InitialFormValidationDict: ValidatorDict<BusinessCard> = {
+const FormValidationDictNew: ValidatorDict<BusinessCard> = {
     companyName: false,
     name: false,
     position: false,
@@ -21,20 +21,34 @@ const InitialFormValidationDict: ValidatorDict<BusinessCard> = {
     socials: true
 }
 
-type CreateCardFormProps = {
-    createCard: (cardData: BusinessCard) => void;
-    loading: boolean;
+const FormValidationDictEdit: ValidatorDict<BusinessCard> = {
+    companyName: true,
+    name: true,
+    position: true,
+    description: true,
+    photo: true,
+    email: true,
+    socials: true
 }
 
-const CreateCardForm = ({createCard, loading }: CreateCardFormProps):JSX.Element => {
+
+type CardFormProps = {
+    submitForm: (card: BusinessCard | WithId<BusinessCard>) => void;
+    loading: boolean;
+    initialData?: WithId<BusinessCard>;
+    className?: string;
+    style?: Object;
+}
+
+const CardForm = ({submitForm, loading, initialData, className, style }: CardFormProps):JSX.Element => {
     const { currentLang, darkMode } = useContext(UserContext) as UserContextType;
-    const [formData, setFormData] = useState<BusinessCard>(initialFormData);
-    const [validationDict, setValidationDict] = useState<ValidatorDict<BusinessCard>>(InitialFormValidationDict);
+    const [formData, setFormData] = useState<BusinessCard>(initialData ?? initialFormData);
+    const [validationDict, setValidationDict] = useState<ValidatorDict<BusinessCard>>(initialData ? FormValidationDictEdit : FormValidationDictNew);
     const [validForm, setValidForm] = useState<boolean>(false);
 
     const onSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
         ev.preventDefault();
-        createCard(formData);
+        submitForm(formData);
     }
 
     const sumObjectValues = (obj: object): number => (Object.values(obj).reduce((sum, value) => sum + value, 0));
@@ -51,24 +65,19 @@ const CreateCardForm = ({createCard, loading }: CreateCardFormProps):JSX.Element
     }
 
     return (
-        <div id='card-form-container'>
+        <div id='card-form-container'
+            className={className}
+            style={style}
+        >
             <Container
                 fluid
                 id='card-form'
                 className={`
                     ${darkMode ? 'border-primary-dark' : 'border-primary'}
                     border border-2 rounded 
-                    pb-3
+                    py-3
                 `}
             >
-                <div
-                    className={`
-                        ${darkMode ? 'text-primary-dark' : 'text-primary'}
-                        fs-1 fw-bold text-center mb-3
-                    `}
-                >
-                    {currentLang.language === 'ESP' ? 'Crear Tarjeta' : 'Create Card'}
-                </div>
                 <Form onSubmit={onSubmit}>
                     <Container fluid className='p-0'>
                         <Row className='p-0'>
@@ -76,30 +85,35 @@ const CreateCardForm = ({createCard, loading }: CreateCardFormProps):JSX.Element
                                 <RowTextFormGroup
                                     label={`${currentLang.language === 'ESP' ? 'Empresa' : 'Company'}: `}
                                     name='companyName'
+                                    initialValue={formData.companyName}
                                     valueChange={handleFormDataChange}
                                     setValidInput={setValidInput}
                                 />
                                 <RowTextFormGroup
                                     label={`${currentLang.language === 'ESP' ? 'Nombre' : 'Name'}: `}
                                     name='name'
+                                    initialValue={formData.name}
                                     valueChange={handleFormDataChange}
                                     setValidInput={setValidInput}
                                 />
                                 <RowTextFormGroup
                                     label={`${currentLang.language === 'ESP' ? 'Cargo' : 'Position'}: `}
                                     name='position'
+                                    initialValue={formData.position}
                                     valueChange={handleFormDataChange}
                                     setValidInput={setValidInput}
                                 />
                                 <RowTextFormGroup
                                     label='Email: '
                                     name='email'
+                                    initialValue={formData.email}
                                     valueChange={handleFormDataChange}
                                     setValidInput={setValidInput}
                                     type='email'
                                 />
                                 <SocialsInput
                                     name='socials'
+                                    initialValue={formData.socials}
                                     valueChange={handleFormDataChange}
                                     setValidInput={setValidInput}
                                 />
@@ -107,12 +121,14 @@ const CreateCardForm = ({createCard, loading }: CreateCardFormProps):JSX.Element
                             <Col md={5}>
                                 <ImageInput
                                     name='photo'
+                                    initialValue={formData.photo ? URL.createObjectURL(formData.photo) : null}
                                     valueChange={handleFormDataChange}
                                     setValidInput={setValidInput}
                                 />
                                 <DescriptionFormGroup
                                     label={`${currentLang.language === 'ESP' ? 'Descripción de la empresa' : 'Description of the company'}: `}
                                     name='description'
+                                    initialValue={formData.description}
                                     valueChange={handleFormDataChange}
                                     setValidInput={setValidInput}
                                 />
@@ -126,7 +142,7 @@ const CreateCardForm = ({createCard, loading }: CreateCardFormProps):JSX.Element
                             {loading ?
                                 <Spinner />
                                 :
-                                `${currentLang.language === 'ESP' ? 'Crear Tarjeta' : 'Create Card'}`
+                                `${initialData ? 'Edit Card' : 'Create Card'}`
                             }
                         </Button>
                     </Container>
@@ -136,4 +152,4 @@ const CreateCardForm = ({createCard, loading }: CreateCardFormProps):JSX.Element
     )
 }
 
-export default CreateCardForm;
+export default CardForm;

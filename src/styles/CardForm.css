@@ -1,13 +1,6 @@
 #card-form-container {
-    padding-top: 12vh;
-    min-height: 90vh;
     display: flex;
     align-items: center;
-}
-
-#card-form-container #card-form {
-    width: 80%;
-    padding-bottom: 1rem;
 }
 
 #card-form-container #card-form #img-prev {
