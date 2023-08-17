@@ -5,7 +5,7 @@ import { UserContext } from "context";
 import { UserContextType, WindowDimensions } from "@types";
 
 import 'scss/css/style.css';
-import 'styles/CarouselHome.css';
+import 'styles/home.css';
 
 interface CarouselSlide {
     title: string;
@@ -113,7 +113,7 @@ const CarouselHome = ({slidesContent, textPosition='right', ...args}: CarouselHo
     })
 
     return (
-        <Carousel
+        <Carousel id='carousel-home'
             dark = {!darkMode}
             activeIndex={activeIndex}
             next={nextSlide}

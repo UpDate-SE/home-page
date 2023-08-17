@@ -10,7 +10,7 @@ import { UserContext } from 'context';
 import { UserContextType, WindowDimensions } from '@types';
 
 import 'scss/css/style.css';
-import 'styles/HomePage.css';
+import 'styles/home.css';
 
 const HomePage = () => {
     const { darkMode, currentLang } = useContext(UserContext) as UserContextType; 
