@@ -8,7 +8,7 @@ import { LoginForm, NavbarDefault } from 'components';
 import { UserContext } from 'context';
 
 import 'scss/css/style.css';
-import 'styles/LoginPage.css';
+import 'styles/login.css';
 
 const LoginPage = () => {
     const { darkMode, login } = useContext(UserContext) as UserContextType;

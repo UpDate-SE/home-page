@@ -5,7 +5,7 @@ import { LoginCredentials, UserContextType } from '@types';
 import { UserContext } from 'context';
 
 import 'scss/css/style.css';
-import 'styles/LoginForm.css';
+import 'styles/login.css';
 
 type LoginFormProps = {
     login: (credentials: LoginCredentials) => void;
