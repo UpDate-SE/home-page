@@ -1,0 +1,33 @@
+.social-media-icon {
+    width: 150px;
+    height: 150px;
+}
+
+#social-a-wrapper:hover {
+    cursor: pointer;
+    opacity: 80%;
+    filter: brightness(75%)
+}
+
+#social-a-wrapper * {
+    width: 100px;
+    height: 100px;
+}
+
+@media screen and (max-width: 768px) {
+    .social-media-icon {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 2.25rem !important;
+    }    
+    
+    #social-a-wrapper {
+        border-radius: 12px !important;
+        padding: 12px !important;
+    }
+
+    #social-a-wrapper * {
+        width: 65px;
+        height: 65px;
+    }
+}
