@@ -1,28 +1,31 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Col, Container, Row } from "reactstrap";
+import { Button, Col, Container, Row } from "reactstrap";
 
-import { BusinesCardInDB, BusinessCard, UserContextType, WithId } from "@types";
+import { BusinesCardInDB, UserContextType } from "@types";
 import { UserContext } from "context";
 
 import { LoadingPage } from "pages";
-import { BusinessCardSmall, EditCardModal, NavbarDefault } from "components";
+import { CreateCardModal, EditCardModal, ICardSmall, NavbarDefault } from "components";
 
 import 'scss/css/style.css';
 
 const DashboardPage = (): JSX.Element => {
-    const { darkMode, getAllCards } = useContext(UserContext) as UserContextType;
+    const { darkMode, createBusinessCard, editCard, getAllCards } = useContext(UserContext) as UserContextType;
 
     const [loading, setLoading] = useState<boolean>(true);
     const [businessCards, setBusinessCards] = useState<BusinesCardInDB[] | null>(null);
     const [cardEdit, setCardEdit] = useState<BusinesCardInDB | null>(null);
-    const [modal, setModal] = useState<boolean>(false);
+    
+    const [modalCreate, setModalCreate] = useState<boolean>(false);
+    const [modalEdit, setModalEdit] = useState<boolean>(false);
 
     const navigate = useNavigate();
 
-    const toggle = () => setModal(!modal);
+    const toggleCreate = () => setModalCreate(!modalCreate);
+    const toggleEdit = () => setModalEdit(!modalEdit);
 
-    const viewCard = (card: BusinesCardInDB) => {
+    const viewCardOptionClicked = (card: BusinesCardInDB) => {
         const spaceToDash = (str: string) => str.replace(/ /g, '-'); 
         navigate(
             `/card/${spaceToDash(card.companyName)}/${spaceToDash(card.name)}`,
@@ -32,22 +35,44 @@ const DashboardPage = (): JSX.Element => {
         );
     }
 
-    const editCard = (card: BusinesCardInDB) => {
+    const editCardOptionClicked = (card: BusinesCardInDB) => {
         setCardEdit(card);
-        toggle();
+        toggleEdit();
     }
 
-    const submitEditCard = (card: WithId<BusinessCard>) => {
+    const submitEditCard = async (cardFormData: FormData): Promise<void> => {
+        if(!businessCards) return;
 
+        const newCard = await editCard(cardFormData);
+        if(!newCard) return;
+        
+        const edittedIndex = businessCards?.findIndex((element) => element._id === newCard._id);
+        const newCards = [...businessCards];
+        newCards[edittedIndex] = newCard;
+        setBusinessCards(newCards);
+        toggleEdit();
     }
 
-    const deleteCard = (card: BusinesCardInDB) => {
+    const submitCreateCard = async (cardFormData: FormData) => {
+        const newCard = await createBusinessCard(cardFormData);
+        if(!newCard) return;
+
+        const newCards = businessCards !== null ? [...businessCards, newCard] : [newCard];
+        setBusinessCards(newCards);
+        toggleCreate();
+    }
+
+    const deleteCardOptionClicked = (card: BusinesCardInDB) => {
 
     }
 
     const fetchCards = async () => {
         const cards = await getAllCards();
         setBusinessCards(cards);
+    }
+
+    const modalEditClosed = () => {
+        setCardEdit(null);
     }
 
     if(loading) {
@@ -65,36 +90,60 @@ const DashboardPage = (): JSX.Element => {
                 under-navbar
                 ${darkMode ? 'bg-dark-dark':''}
             `}
+            style={{
+                minHeight: '100vh'
+            }}
         >
             <NavbarDefault />
             <Container
                 id='dashboard-page-content'
                 fluid
+                className='pt-3'
             >
-                <Row>
+                <div id='btn-add'
+                    className='mt-2 text-end`'
+                >
+                    <Button
+                        className={`
+                            ${darkMode ? '' : 'text-light'}
+                            px-5 py-2
+                        `}
+                        color={darkMode ? 'primary-dark' : 'primary'}
+                        onClick={() => toggleCreate()}
+                    >
+                        Add Card
+                    </Button>
+                </div>
+                <Row id='cards-row'
+                >
                     {businessCards.map((card, index) => (
                         <Col
                             md={6}
                             key={index}
                             className='my-3'
                         >
-                            <BusinessCardSmall
+                            <ICardSmall
                                 key={index}
                                 businessCard={card}
-                                dark={darkMode}
-                                viewCard={viewCard}
-                                editCard={editCard}
-                                deleteCard={deleteCard}
+                                viewCard={viewCardOptionClicked}
+                                editCard={editCardOptionClicked}
+                                deleteCard={deleteCardOptionClicked}
                             />
                         </Col>
                     ))}
                 </Row>
             </Container>
             <EditCardModal
-                isOpen={modal}
-                toggle={toggle}
+                isOpen={modalEdit}
+                toggle={toggleEdit}
                 card={cardEdit}
+                onClose={modalEditClosed}
                 submit={submitEditCard}
+            />
+            <CreateCardModal
+                isOpen={modalCreate}
+                toggle={toggleCreate}
+                submit={submitCreateCard}
             />
         </Container>
     )
