@@ -8,7 +8,7 @@ import { UserContextType } from "@types";
 import { UserContext } from "context";
 
 import 'scss/css/style.css';
-import 'styles/DarkModeToggler.css';
+import 'styles/navbar.css';
 
 const DarkModeToggler = (): JSX.Element => {
     const { darkMode, toggleDarkMode } = useContext(UserContext) as UserContextType;

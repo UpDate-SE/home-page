@@ -1,7 +1,7 @@
 import { Container, Spinner } from 'reactstrap';
 
 import 'scss/css/style.css';
-import 'styles/LoadingPage.css';
+import 'styles/loading.css';
 
 const LoadingPage = () => (
     <Container

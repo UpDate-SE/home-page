@@ -9,7 +9,7 @@ import { DescriptionFormGroup, ImageInput, RowTextFormGroup, SocialsInput } from
 import { initialFormData } from '@helpers/initial-card';
 
 import 'scss/css/style.css';
-import 'styles/CardForm.css';
+import 'styles/cardForm.css';
 
 const FormValidationDictNew: ValidatorDict<BusinessCard> = {
     companyName: false,

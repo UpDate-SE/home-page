@@ -16,9 +16,33 @@
 }
 
 /*
+    MARKETING PLANS
+*/
+#marketing-plans .marketing-plan {
+    height: 80vh;
+}
+
+#marketing-plans .marketing-image {
+    width: 80%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+}
+
+/*
     PACKAGE INFO
 */
 @media screen and (max-width: 768px) {
+    #marketing-plans .marketing-plan {
+        height: unset;
+        padding-left: 0;
+        padding-right: 0;
+        margin-bottom: 2rem;
+    }
+    
+    #marketing-plans .marketing-image {
+        width: 85%;
+    }
+
     #package-info #title-list {
         padding: 0;
     }

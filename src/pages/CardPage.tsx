@@ -12,7 +12,7 @@ import { ICardSocialMedia, NavbarDefault } from "components";
 import { allUpperCaseFirst, removeDashes } from "@helpers/card-formatter";
 
 import 'scss/css/style.css';
-import 'styles/CardPage.css';
+import 'styles/cardPage.css';
 
 type CardPageProps = {
     businessCard: BusinesCardInDB;

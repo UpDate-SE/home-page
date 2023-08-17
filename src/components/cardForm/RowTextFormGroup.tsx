@@ -5,7 +5,7 @@ import { UserContextType, TextFormGroup } from "@types";
 import { UserContext } from "context";
 
 import 'scss/css/style.css';
-import 'styles/CardForm.css';
+import 'styles/cardForm.css';
 
 const RowTextFormGroup = ({label, name, valueChange, setValidInput, initialValue, type='text'}: TextFormGroup): JSX.Element => {
     const { currentLang, darkMode } = useContext(UserContext) as UserContextType;
