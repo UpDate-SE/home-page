@@ -7,7 +7,7 @@ import { UserContextType } from "@types";
 import { DarkModeToggler, LangSwitcher } from 'components';
 
 import 'scss/css/style.css';
-import 'styles/NavbarHome.css';
+import 'styles/navbar.css';
 
 const NavBarHome = () => {
     const { darkMode, currentLang } = useContext(UserContext) as UserContextType; 
