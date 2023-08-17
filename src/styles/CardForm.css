@@ -1,0 +1,31 @@
+#card-form-container {
+    display: flex;
+    align-items: center;
+}
+
+#card-form-container #card-form #img-prev {
+    min-width: 200px;
+    min-height: 200px;
+    overflow: hidden;
+}
+
+#card-form-container #card-form #img-prev:hover {
+    cursor: pointer;
+    opacity: 80%;
+}
+
+#card-form-container #card-form #icon-default {
+    min-height: 198px;
+}
+
+#card-form-container #card-form #image-container {
+    width: 201px;
+    height: 201px;
+    object-fit: cover;
+    aspect-ratio: '1:1';
+}
+
+#card-form-container #card-form #socials-input {
+    max-height: 30vh;
+    overflow-y: scroll;
+}

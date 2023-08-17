@@ -1,31 +1,30 @@
 import { useContext, useState } from "react";
 import { FormGroup, Input, Label } from "reactstrap";
 
-import { CardInput, SocialMedia, SupportedSocials, UserContextType } from "@types";
+import { SocialMedia, SocialsInputProps, SupportedSocials, UserContextType } from "@types";
 import { UserContext } from "context";
 
-import { initialSocialMedia } from "@helpers/initial-card";
 import { isValidUrl } from "@helpers/url-validator";
 
 import 'scss/css/style.css';
-import 'styles/CreateCardForm.css';
+import 'styles/CardForm.css';
 
-const SocialsInput = ({name, valueChange, setValidInput}: CardInput): JSX.Element => {
+const SocialsInput = ({name, valueChange, initialValue, setValidInput}: SocialsInputProps): JSX.Element => {
     const { currentLang, darkMode } = useContext(UserContext) as UserContextType;
-    const [socials, setSocials] = useState<SocialMedia>(initialSocialMedia);
+    const [socials, setSocials] = useState<SocialMedia>(initialValue);
 
     const onTextChange = (value: string, key: keyof SocialMedia) => {
         const socialUrl = value.length > 0 ? value : null;
 
-        let newSocials = {...socials }
+        let newSocials = { ...socials }
         newSocials[key] = socialUrl;
         
         const valid = socialUrl ? isValidUrl(value) : true;
 
+        setSocials(newSocials);
         setValidInput(name, valid);
 
         if(valid) {
-            setSocials(newSocials);
             valueChange(name, newSocials);
         }
     }
@@ -47,7 +46,7 @@ const SocialsInput = ({name, valueChange, setValidInput}: CardInput): JSX.Elemen
             <div
                 id='socials-input'
                 className={`
-                    ${darkMode ? 'bg-dark-dark border-primary-dark' : 'border-primary'}
+                    ${darkMode ? 'bg-dark border-primary-dark' : 'border-primary'}
                     border rounded
                     p-2
                 `}
@@ -61,8 +60,9 @@ const SocialsInput = ({name, valueChange, setValidInput}: CardInput): JSX.Elemen
                             <Input
                                 id={socialName}
                                 className={`
-                                    ${darkMode ? 'bg-dark-dark text-light' : ''}
+                                    ${darkMode ? 'bg-dark text-light' : ''}
                                 `}
+                                value={socials[socialName as SupportedSocials] ?? ''}
                                 type='url'
                                 placeholder={`https://${socialName}.com`}
                                 onChange={(ev) => onTextChange(ev.target.value, socialName as SupportedSocials)}

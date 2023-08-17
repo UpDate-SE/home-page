@@ -4,9 +4,12 @@ import { Col, FormFeedback, FormGroup, Input, Label } from "reactstrap";
 import { UserContextType, TextFormGroup } from "@types";
 import { UserContext } from "context";
 
-const RowTextFormGroup = ({label, name, valueChange, setValidInput, type='text'}: TextFormGroup): JSX.Element => {
+import 'scss/css/style.css';
+import 'styles/CardForm.css';
+
+const RowTextFormGroup = ({label, name, valueChange, setValidInput, initialValue, type='text'}: TextFormGroup): JSX.Element => {
     const { currentLang, darkMode } = useContext(UserContext) as UserContextType;
-    const [value, setValue] = useState<string>('');
+    const [value, setValue] = useState<string>(initialValue);
     const [valid, setValid] = useState<boolean>(true);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
