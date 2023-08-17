@@ -8,7 +8,7 @@ import { ImageInputProps, UserContextType } from '@types';
 import { UserContext } from 'context';
 
 import 'scss/css/style.css';
-import 'styles/CardForm.css';
+import 'styles/cardForm.css';
 
 const ImageInput = ({name, valueChange, initialValue, setValidInput}: ImageInputProps ) => {
     const { currentLang, darkMode } = useContext(UserContext) as UserContextType;

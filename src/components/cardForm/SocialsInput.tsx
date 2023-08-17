@@ -7,7 +7,7 @@ import { UserContext } from "context";
 import { isValidUrl } from "@helpers/url-validator";
 
 import 'scss/css/style.css';
-import 'styles/CardForm.css';
+import 'styles/cardForm.css';
 
 const SocialsInput = ({name, valueChange, initialValue, setValidInput}: SocialsInputProps): JSX.Element => {
     const { currentLang, darkMode } = useContext(UserContext) as UserContextType;
