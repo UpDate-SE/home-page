@@ -4,7 +4,7 @@ import { MarketingPlanType } from "@types";
 import MarketingPlan from "./MarketingPlan";
 
 import 'scss/css/style.css';
-import 'styles/MarketingPlans.css';
+import 'styles/plans.css';
 
 type MarketingPlansProps = {
     name: string

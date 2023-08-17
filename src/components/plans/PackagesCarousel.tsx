@@ -5,7 +5,7 @@ import { UserContextType } from "@types";
 import { UserContext } from "context";
 
 import 'scss/css/style.css';
-import 'styles/Packages.css';
+import 'styles/plans.css';
 
 type PackagesCarouselProps = {
     items: JSX.Element[];

@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 import 'scss/css/style.css';
-import 'styles/Packages.css';
+import 'styles/plans.css';
 
 type PackageInfoProps = {
     title: string;
