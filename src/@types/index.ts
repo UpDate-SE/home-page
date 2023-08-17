@@ -23,7 +23,8 @@ export interface UserContextType {
     toggleLanguage: () => void;
     login: (credentials: LoginCredentials) => Promise<boolean>;
     getAllCards: () => Promise<BusinesCardInDB[]>;
-    createBusinessCard: (card: FormData) => Promise<boolean>;
+    createBusinessCard: (card: FormData) => Promise<BusinesCardInDB | null>;
+    editCard: (card: FormData) => Promise<BusinesCardInDB | null>;
     getBusinessCard: (company: string, name: string) => Promise<BusinesCardInDB | null>;
     getBusinessCardWithID: (cardID: string) => Promise<BusinesCardInDB | null>;
 }
