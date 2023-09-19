@@ -1,7 +1,7 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Col, Row } from "reactstrap";
 
-import { faEye, faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { IconDefinition, faCheck, faCopy, faEye, faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import { BusinesCardInDB, UserContextType } from "@types"
 import { UserContext } from "context";
@@ -14,10 +14,17 @@ type ICardSmallProps = {
     viewCard: (card: BusinesCardInDB) => void;
     editCard: (card: BusinesCardInDB) => void;
     deleteCard: (card: BusinesCardInDB) => void;
+    copyCardLink: (card: BusinesCardInDB, copyCallback: () => void) => void;
 }
 
-const ICardSmall = ({businessCard, viewCard, editCard, deleteCard}: ICardSmallProps): JSX.Element => {
+const ICardSmall = ({businessCard, viewCard, editCard, deleteCard, copyCardLink}: ICardSmallProps): JSX.Element => {
     const { darkMode } = useContext(UserContext) as UserContextType;
+    const [shareIcon, setShareIcon] = useState<IconDefinition>(faCopy)
+
+    const onCopyFinished = () => {
+        setShareIcon(faCheck);
+        setTimeout(() => setShareIcon(faCopy), 5000);
+    }
 
     return (
         <div
@@ -78,6 +85,12 @@ const ICardSmall = ({businessCard, viewCard, editCard, deleteCard}: ICardSmallPr
                             hoverColor={darkMode ? 'var(--bs-primary-dark)' : 'var(--bs-primary)'}
                             className='my-2'
                             icon={faPencil}
+                        />
+                        <ICardSmOption
+                            onClick={() => copyCardLink(businessCard, onCopyFinished)}
+                            hoverColor='green'
+                            className='mb-2'
+                            icon={shareIcon}
                         />
                         <ICardSmOption
                             onClick={() => deleteCard(businessCard)}

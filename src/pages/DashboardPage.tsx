@@ -40,6 +40,11 @@ const DashboardPage = (): JSX.Element => {
         toggleEdit();
     }
 
+    const copyCardOptionClicked = async (card: BusinesCardInDB, copyCallback: () => void) => {
+        await navigator.clipboard.writeText(`${window.location.host}/card/${card._id}`);
+        copyCallback();
+    }
+
     const submitEditCard = async (cardFormData: FormData): Promise<void> => {
         if(!businessCards) return;
 
@@ -128,6 +133,7 @@ const DashboardPage = (): JSX.Element => {
                                 viewCard={viewCardOptionClicked}
                                 editCard={editCardOptionClicked}
                                 deleteCard={deleteCardOptionClicked}
+                                copyCardLink={copyCardOptionClicked}
                             />
                         </Col>
                     ))}
