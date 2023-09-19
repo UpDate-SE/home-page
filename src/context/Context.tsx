@@ -53,6 +53,32 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
         return true;
     }
 
+    const authenticate = async (): Promise<boolean> => {
+        const apiUrl = process.env.REACT_APP_API_URL;
+
+        console.log('auth, ', userDoc);
+
+        if(!userDoc) return false;
+
+        const config: AxiosRequestConfig = {
+            url: `${apiUrl}/authenticate`,
+            method: 'GET',
+            data: {
+                _id: userDoc._id
+            },
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `bearer ${token}`
+            }
+        }
+
+        const auth = await axios(config)
+            .then(res => {console.log(res.status); return res.status === 200})
+            .catch((err) => {console.error(err); return false})
+
+        return auth;    
+    }
+
     const createBusinessCard = async (card: FormData): Promise<BusinesCardInDB | null> => {
         const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -154,13 +180,16 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
     }
 
     const provider = {
-        token,
         darkMode,
         currentLang,
         langOption,
         toggleDarkMode,
         toggleLanguage,
+
+        authenticate,
         login,
+        token,
+
         createBusinessCard,
         editCard,
         getAllCards,

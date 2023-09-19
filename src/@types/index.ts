@@ -16,13 +16,16 @@ export interface WindowDimensions {
 }
 
 export interface UserContextType {
-    token: string | null;
     darkMode: boolean;
     currentLang: UserLanguage;
     langOption: UserLanguage;
     toggleDarkMode: () => void;
     toggleLanguage: () => void;
+
+    token: string | null;
+    authenticate: () => Promise<boolean>;
     login: (credentials: LoginCredentials) => Promise<boolean>;
+    
     getAllCards: () => Promise<BusinesCardInDB[]>;
     createBusinessCard: (card: FormData) => Promise<BusinesCardInDB | null>;
     editCard: (card: FormData) => Promise<BusinesCardInDB | null>;
