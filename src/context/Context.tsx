@@ -1,17 +1,19 @@
 import React, { PropsWithChildren, useState } from "react";
 
 import axios, { AxiosRequestConfig } from "axios";
+import { useSessionStorage } from "usehooks-ts";
 
-import { BusinesCardInDB, LanguagesDict, LoginCredentials, UserContextType, UserLanguage } from "@types";
-import useToken from "hooks/useToken";
+import { BusinesCardInDB, LanguagesDict, LoginCredentials, UserContextType, UserDoc, UserLanguage } from "@types";
 
 export const UserContext = React.createContext<UserContextType | null>(null);
 
 export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element => {
-    const [darkMode, setDarkMode] = useState<boolean>(() => getDarkModePreference());
     const [currentLang, setCurrentLang] = useState<UserLanguage>(() => getLanguagePreference());
-    const [langOption, setLangOption] = useState<UserLanguage>(() => getOppositeLang(currentLang));    
-    const {token, setToken} = useToken();
+    const [darkMode, setDarkMode] = useState<boolean>(() => getDarkModePreference());
+    const [langOption, setLangOption] = useState<UserLanguage>(() => getOppositeLang(currentLang));
+    
+    const [userDoc, setUserDoc] = useSessionStorage<UserDoc | null>("user-doc", null);
+    const [token, setToken] = useSessionStorage<string | null>("token", null);
 
     const toggleLanguage = () => {
         const newLang = getOppositeLang(currentLang);
@@ -34,12 +36,19 @@ export const UserContextProvider = ({children}: PropsWithChildren): JSX.Element 
             data: credentials
         }
 
-        const reqToken = await axios(config)
+        const { userDoc, token } = await axios(config)
             .then(res => res.data)
-            .catch(err => console.error(err.data));
-        
-        if(!reqToken) return false;
-        setToken(reqToken);
+            .catch(err => {
+                console.error(err);
+                return {
+                    userDoc: null, 
+                    token: null
+                }
+            });
+            
+        setToken(token);
+        setUserDoc(userDoc);    
+        if(!token || !userDoc) return false;
 
         return true;
     }

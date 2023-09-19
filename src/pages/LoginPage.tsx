@@ -20,8 +20,8 @@ const LoginPage = () => {
         setFormErrors(false);
         setLoading(true);
         const res = await login(credentials);
-        if(res) navigate('/');
-        setFormErrors(!res);
+        if(res) return navigate('/');
+        setFormErrors(true);
         setLoading(false);
     }
     

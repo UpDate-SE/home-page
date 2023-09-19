@@ -1,4 +1,5 @@
-import { BusinesCardInDB, LoginCredentials } from './businessCard';
+import { BusinesCardInDB } from './businessCard';
+import { LoginCredentials } from './users';
 
 export interface UserLanguage {
     language: string;
@@ -47,3 +48,4 @@ export * from './conditionalRouter';
 export * from './businessCard';
 export * from './businessCardForm';
 export * from './socialMedia';
+export * from './users';

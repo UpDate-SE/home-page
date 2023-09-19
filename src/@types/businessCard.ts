@@ -1,11 +1,6 @@
 import { PhotoIsString, WithId } from "@types";
 import { SocialMedia } from "./socialMedia";
 
-export type LoginCredentials = {
-    username: string;
-    password: string;
-}
-
 export type BusinessCard = {
     companyName: string;
     name: string;

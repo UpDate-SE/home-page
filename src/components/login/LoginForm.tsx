@@ -16,15 +16,15 @@ type LoginFormProps = {
 const LoginForm = ({login, loading, formErrors}: LoginFormProps): JSX.Element => {
     const { currentLang, darkMode } = useContext(UserContext) as UserContextType;
     
-    const [username, setUsername] = useState<string>('');
-    const [usernameValid, setUsernameValid] = useState<boolean>(true);
+    const [email, setEmail] = useState<string>('');
+    const [emailValid, setEmailValid] = useState<boolean>(true);
     
     const [password, setPassword] = useState<string>('');
     const [passwordValid, setPasswordValid] = useState<boolean>(true);
 
     useEffect(() => {
         if(formErrors) {
-            setUsernameValid(false);
+            setEmailValid(false);
             setPasswordValid(false);
         }
     }, [formErrors]);
@@ -32,16 +32,16 @@ const LoginForm = ({login, loading, formErrors}: LoginFormProps): JSX.Element =>
     const onSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
         ev.preventDefault();
         const credentials: LoginCredentials = {
-            username: username,
+            email: email,
             password: password
         }
         login(credentials);
     }
 
-    const onUsernameChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    const onEmailChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
         const value = ev.target.value.trim();
-        setUsername(value);
-        setUsernameValid(value.length > 0);
+        setEmail(value);
+        setEmailValid(value.length > 0);
     }
 
     const onPasswordChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,10 +78,10 @@ const LoginForm = ({login, loading, formErrors}: LoginFormProps): JSX.Element =>
                             className={`
                                 ${darkMode ? 'bg-dark text-light' : ''}
                             `}
-                            placeholder={currentLang.language === 'ESP' ? 'Usuario' : 'Username'}
-                            value={username}
-                            invalid={!usernameValid}
-                            onChange={onUsernameChange}
+                            placeholder={currentLang.language === 'ESP' ? 'Correo' : 'Email'}
+                            value={email}
+                            invalid={!emailValid}
+                            onChange={onEmailChange}
                         />
                         <Label
                             for='user'
@@ -146,7 +146,7 @@ const LoginForm = ({login, loading, formErrors}: LoginFormProps): JSX.Element =>
                     <Button
                         className='w-100'
                         color='primary'
-                        disabled={username.length === 0 || password.length === 0}
+                        disabled={email.length === 0 || password.length === 0}
                     >
                         {
                             loading ?
