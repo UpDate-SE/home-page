@@ -2,11 +2,12 @@ import { useContext } from "react";
 import { Button, Col, Container, Row } from "reactstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faAddressBook, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 import { BusinesCardInDB, SupportedSocials, UserContextType } from "@types";
 import { UserContext } from "context";
 
+import { WebsiteIcon } from "assets";
 import { ICardSocialMedia, NavbarDefault } from "components";
 
 import { allUpperCaseFirst, removeDashes } from "@helpers/card-formatter";
@@ -58,6 +59,20 @@ const CardPage = ({businessCard}: CardPageProps): JSX.Element => {
                             <br/>
                             {businessCard.description}
                         </div>
+                        {
+                            businessCard.website ?
+                            <a href={businessCard.website} target="_blank" rel="noreferrer"
+                                className="d-flex align-items-center mt-2 fs-5"
+                            >
+                                <div>
+                                    <img id="website-icon" src={WebsiteIcon} width={35} alt="logo for website"/>
+                                    <span className="ms-2">
+                                        {businessCard.website.split("//").at(1) ?? businessCard.website}
+                                    </span>
+                                </div>
+                            </a>
+                            :null
+                        }
                     </Col>
                     <Col xs={6}
                         id='col-photo'
@@ -99,6 +114,32 @@ const CardPage = ({businessCard}: CardPageProps): JSX.Element => {
                         </Button>
                     </div>
                 </a>
+                {
+                    businessCard.socials.whatsapp ?
+                    <a
+                        id="save-contact"
+                        href={`tel:${lastUrlItem(businessCard.socials.whatsapp)}`}
+                        className={`
+                            ${darkMode ? 'text-dark' : 'text-light'}
+                            text-decoration-none
+                        `}
+                    >
+                        <div className='text-center mb-3'>
+                            <Button
+                                id='contact-button'
+                                className='w-100'
+                                color={`${darkMode ? 'primary-dark' : 'primary'}`}
+                            >
+                                <FontAwesomeIcon
+                                    icon={faAddressBook}
+                                    className='me-2'
+                                />
+                                Guardar Contacto
+                            </Button>
+                        </div>
+                    </a>
+                    :null
+                }
                 <div id='socials-container'
                     className='d-flex flex-wrap'
                 >
@@ -123,5 +164,7 @@ const CardPage = ({businessCard}: CardPageProps): JSX.Element => {
         </Container>
     )
 }
+
+const lastUrlItem = (url: string) => url.substring(url.lastIndexOf('/') + 1);
 
 export default CardPage;
