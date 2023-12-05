@@ -62,6 +62,7 @@
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
+    "update-browserslist-db": "^1.0.13",
     "vercel": "^31.2.0"
   }
 }
