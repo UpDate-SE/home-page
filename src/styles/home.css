@@ -16,6 +16,19 @@
     left:0px
 }
 
+#carousel-home {
+    min-height: 60vh;
+}
+
+#carousel-home #image-logo {
+    min-height: 50vh;
+}
+
+#carousel-home #description {
+    max-height: 55vh;
+    overflow-y: scroll;
+}
+
 @media screen and (max-width: 768px) {
     #home-page .section-title {
         font-size: 2rem !important;

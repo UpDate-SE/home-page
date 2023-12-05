@@ -4,7 +4,7 @@ import { Button, Col, Container, Row } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
-import { CaorIncLogo, KeepCommunity, MakeKnown, Marketing1, Marketing2, Marketing3, MarketingExpert, Meeting, Networks1, Networks2, Networks3, StarterGraph, TeamProcess, TeamProcessSM, TrenningLogo, ZoomerChatLogo } from 'assets';
+import { CaorIncLogo, ExpoWMLogo, KeepCommunity, MakeKnown, Marketing1, Marketing2, Marketing3, MarketingExpert, Meeting, Networks1, Networks2, Networks3, StarterGraph, TeamProcess, TeamProcessSM, TrenningLogo, ZoomerChatLogo } from 'assets';
 import { CarouselHome, FooterHome, MarketingPlans, NavBarHome, PackageInfo, PackagesCarousel } from 'components';
 import { UserContext } from 'context';
 import { UserContextType, WindowDimensions } from '@types';
@@ -464,6 +464,17 @@ const HomePage = () => {
                     <CarouselHome
                         textPosition='left'
                         slidesContent={[
+                            {
+                                title: 'Expo Walmart 2024',
+                                image: ExpoWMLogo,
+                                description:
+                                [
+                                    'Con gran orgullo, nos complace destacar que nuestra empresa ha sido la fuerza impulsora detrás del desarrollo exitoso de la plataforma virtual empleada en el evento de ExpoWalmart2024.',
+                                    'Hemos dedicado incansables esfuerzos para diseñar y ejecutar una solución tecnológica innovadora que ha permitido a los participantes experimentar de manera única todas las facetas de ExpoWalmart.',
+                                    'Desde la creación de interfaces intuitivas hasta la implementación de funciones avanzadas, nuestra plataforma ha sido clave para facilitar la interacción fluida, la participación activa y la generación de experiencias significativas durante este destacado evento.',
+                                    'Este logro refleja nuestro compromiso continuo con la excelencia en el desarrollo de soluciones tecnológicas vanguardistas que transforman y enriquecen la manera en que las empresas se conectan con su audiencia.'
+                                ]
+                            },
                             {
                                 title: 'Trenning',
                                 image: TrenningLogo,

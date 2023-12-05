@@ -71,7 +71,7 @@ const CarouselHome = ({slidesContent, textPosition='right', ...args}: CarouselHo
                             ${windowSize.width < 768 ? 'text-center' : ''}
                         `}
                     >
-                        <img 
+                        <img id="image-logo"
                             className='p-0 w-75 img-fluid border border-primary border-3 user-select-none'
                             draggable={false}
                             src={content.image}
@@ -79,6 +79,7 @@ const CarouselHome = ({slidesContent, textPosition='right', ...args}: CarouselHo
                         />
                     </Col>
                     <Col md='7'
+                        id="description"
                         className={
                         `order-${textPosition === 'left' ? '1' : '3'}
                         ${textPosition === 'left' ? 'text-content-large' : 'text-content'}
