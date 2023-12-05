@@ -18,6 +18,7 @@ const FormValidationDictNew: ValidatorDict<BusinessCard> = {
     description: false,
     photo: false,
     email: false,
+    website: true,
     socials: true
 }
 
@@ -27,6 +28,7 @@ const FormValidationDictEdit: ValidatorDict<BusinessCard> = {
     position: true,
     description: true,
     photo: true,
+    website: true,
     email: true,
     socials: true
 }
@@ -56,7 +58,7 @@ const CardForm = ({submitForm, loading, initialData, className, style }: CardFor
     const setValidInput = (name: BCardKeys, valid: boolean) => {
         const newValidationDict = {...validationDict, [name]: valid}; 
         setValidationDict(newValidationDict);
-        setValidForm(sumObjectValues(newValidationDict) === 7);
+        setValidForm(sumObjectValues(newValidationDict) === 8);
     };
 
     const handleFormDataChange = (name: BCardKeys, value: string | File | SocialMedia) => {
@@ -110,6 +112,14 @@ const CardForm = ({submitForm, loading, initialData, className, style }: CardFor
                                     valueChange={handleFormDataChange}
                                     setValidInput={setValidInput}
                                     type='email'
+                                />
+                                <RowTextFormGroup
+                                    label={`${currentLang.language === 'ESP' ? 'Sitio Web' : 'Website'}: `}
+                                    name='website'
+                                    initialValue={formData.website}
+                                    valueChange={handleFormDataChange}
+                                    setValidInput={setValidInput}
+                                    type="url"
                                 />
                                 <SocialsInput
                                     name='socials'

@@ -19,5 +19,6 @@ export const initialFormData: BusinessCard = {
     description: '',
     photo: null,
     email: '',
+    website: '',
     socials: initialSocialMedia
 }
